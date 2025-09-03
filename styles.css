@@ -1,0 +1,199 @@
+/* ================== Reset et base ================== */
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: "Grenze Gotisch", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    color: rgb(165, 165, 165);
+    display: flex;
+    flex-direction: column;
+}
+
+/* ================== Header ================== */
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px 0;
+}
+
+/* ================== Main ================== */
+main {
+    flex: 1; /* prend tout l’espace restant et s’adapte */
+    display: flex;
+    width: 100%;
+    padding: 20px 0;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ================== Footer ================== */
+footer {
+    height: 15vh;
+    width: 100%;
+    background: linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                radial-gradient(circle at center, #c81e3a 0%, #0a0a0a 100%);
+    box-shadow: 0 15px 50px rgb(0, 0, 0);
+    color: rgb(196, 196, 196);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ================== Background ================== */
+.background {
+    background-image: repeating-linear-gradient(
+        45deg, rgba(255, 255, 255, 0.1) 0, rgba(94, 5, 5, 0.1) 1px, transparent 1px, transparent 20px
+    ), repeating-linear-gradient(
+        -45deg, rgba(255, 255, 255, 0.1) 0, rgba(0, 0, 0, 0.1) 1px, transparent 1px, transparent 20px
+    ); 
+    background-size: 70px 70px;
+    background-color: rgb(37, 1, 1);
+    width: 100%;
+    height: 100%;
+}
+
+/* ================== Navigation ================== */
+.nav {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 15vh;
+    font-size: 25px;
+}
+
+ul {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    margin: 0 20px 0 0;
+    align-items: center;
+    width: 95%;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    color: rgb(153, 153, 153);
+    background: linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                radial-gradient(circle at center, #c81e3a 0%, #0a0a0a 100%);
+    box-shadow: 0 15px 50px rgb(0, 0, 0);
+    width: 100%;
+    width: 20%;
+    height: 5vh;
+    border-radius: 15px;
+    animation: clignote 2s infinite alternate;
+}
+
+@keyframes clignote {
+    0% { opacity: 1; }
+    100% { opacity: 0.7; }
+}
+
+a {
+    text-decoration: none;
+    color: rgb(196, 196, 196);
+}
+
+/* ================== Gallery ================== */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+}
+
+/* ================== Portfolio / Présentation ================== */
+.portfolio, .presentation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 80%;
+    max-width: 1200px;
+    padding: 20px;
+    margin: 2.5%;
+    gap: 20px;
+    background: linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                radial-gradient(circle at center, #c81e3a 0%, #0a0a0a 100%);
+    box-shadow: 0 15px 50px rgb(0, 0, 0);
+    border-radius: 15px;
+}
+
+.presentation p {
+    font-size: 20px;
+    line-height: 1.5;
+    width: 100%;
+    max-width: 800px;
+}
+
+/* ================== Figure / Images ================== */
+figure {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 0;
+}
+
+figure img {
+    width: 84%;
+    height: 50vh;
+    object-fit: cover;
+    border: 5px solid rgb(77, 77, 77);
+}
+
+/* ================== Boutons ================== */
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: rgb(153, 153, 153);
+    background: linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                radial-gradient(circle at center, #c81e3a 0%, #0a0a0a 100%);
+    box-shadow: 0 15px 50px rgb(146, 2, 2);
+    transition: background-color 0.3s ease;
+}
+
+/* ================== Warning ================== */
+.Warning {
+    display: none;
+    position: absolute;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 30px;
+    height: 65vh;
+    width: 80%;
+    background: linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                radial-gradient(circle at center, #c81e3a 0%, #0a0a0a 100%);
+    box-shadow: 0 15px 50px rgb(0, 0, 0);
+    border-radius: 15px;
+    gap: 20px;
+}
+
+/* ================== Profile pic ================== */
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid rgb(77, 77, 77);
+}
+.gallery, .portfolio, .presentation {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
