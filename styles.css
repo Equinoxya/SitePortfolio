@@ -175,8 +175,8 @@ button {
     justify-content: center;
     text-align: center;
     font-size: 30px;
-    height: 65vh;
-    width: 80%;
+    height: 85vh;
+    width: 90%;
     background: linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
                 radial-gradient(circle at center, #c81e3a 0%, #0a0a0a 100%);
     box-shadow: 0 15px 50px rgb(0, 0, 0);
