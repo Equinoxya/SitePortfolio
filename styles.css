@@ -122,7 +122,6 @@ a {
     max-width: 1200px;
     padding: 20px;
     margin: 2.5%;
-    gap: 20px;
     background: linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
                 radial-gradient(circle at center, #c81e3a 0%, #0a0a0a 100%);
     box-shadow: 0 15px 50px rgb(0, 0, 0);
@@ -134,6 +133,8 @@ a {
     line-height: 1.5;
     width: 100%;
     max-width: 800px;
+    margin: 0;
+    padding: 2%;
 }
 
 /* ================== Figure / Images ================== */
@@ -184,7 +185,7 @@ button {
 }
 
 /* ================== Profile pic ================== */
-.profile-pic {
+.pp {
     width: 150px;
     height: 150px;
     border-radius: 50%;
