@@ -1,0 +1,33 @@
+📜 Licence d’utilisation – Pack Clé en Main portfolio
+
+Copyright © Equipouet – 2025
+Tous droits réservés.
+
+En téléchargeant, installant ou utilisant ce pack (HTML, CSS, JS, JSON et autres fichiers fournis), vous acceptez les conditions suivantes :
+
+✅ Vous avez le droit de :
+
+Utiliser ce pack pour votre site personnel ou professionnel.
+
+Modifier les contenus visibles (textes, images, données JSON prévues à cet effet).
+
+Mettre en ligne le site sur votre propre hébergement.
+
+❌ Vous n’avez pas le droit de :
+
+Revendre, redistribuer ou partager ce pack sous quelque forme que ce soit.
+
+Modifier le code source (HTML, CSS, JS) au-delà des zones prévues pour la personnalisation.
+
+Retirer ou masquer les mentions de copyright intégrées.
+
+Utiliser ce pack pour créer des produits dérivés destinés à la vente.
+
+⚖️ En cas de non-respect :
+
+Toute utilisation non conforme entraînera la résiliation immédiate de la licence et pourra donner lieu à des actions légales.
+
+💡 Support & mises à jour :
+
+Pour toute personnalisation avancée, mise à jour ou correction de bug, merci de me contacter directement :
+👉 equinoxya.pro@gmail.com
