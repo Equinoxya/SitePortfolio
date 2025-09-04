@@ -30,6 +30,17 @@ main {
     align-items: center;
     justify-content: center;
 }
+h1{
+    font-size: 75px;
+    margin: 0;
+    padding: 0;
+}
+h3{
+    font-size: 40px;
+    margin: 0;
+    padding: 0;
+    margin: 5%;
+}
 
 /* ================== Footer ================== */
 footer {
@@ -134,6 +145,49 @@ a {
     max-width: 800px;
     margin: 0;
     padding: 2%;
+}
+.carousel-image{
+    width: 50%; /* chaque image prend tout l’espace de la fenêtre */
+    flex-shrink: 0; /* empêche le redimensionnement */
+    border-radius: 10px;
+    border: 5px solid rgb(77, 77, 77);
+    box-shadow: 0 15px 50px rgb(0, 0, 0);
+}
+.carousel-button{
+    background-color: transparent;
+    border: none;
+    font-size: 40px;
+    cursor: pointer;
+    color: rgb(153, 153, 153);
+    transition: color 0.3s ease;
+}
+.carrousel{
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    margin: 2.5%;
+    position: relative; 
+    overflow: hidden;
+
+}
+.carousel-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    transition: transform 0.5s ease-in-out; /* animation fluide */
+}
+.carousel-track{
+    display: flex;
+    gap: 20px;
+    overflow: hidden;
+    width: 80%;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.5s ease-in-out; /* animation fluide */
 }
 
 /* ================== Figure / Images ================== */

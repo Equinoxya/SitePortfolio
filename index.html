@@ -8,6 +8,7 @@
     <script src="https://kit.fontawesome.com/e96e865ef4.js" crossorigin="anonymous"></script>
     <script src="portfolio.js" defer></script>
     <script src="presentation.js" defer></script>
+    <script src="carrousel.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8" />
     <meta name="description" content="Portfolio de Equipouet, développeuse web et illustratrice. Découvrez mes projets web et mes illustrations uniques." />
@@ -42,6 +43,15 @@
         </nav>
         <article class="presentation">
         </article>
+        <section class="carrousel">
+            <h3>Nouveautés</h3>
+            <div class="carousel-container" >
+                <button type="button" class="carousel-button left">&#10094;</button>
+                    <div class="carousel-track">
+                    </div>
+                <button type="button" class="carousel-button right">&#10095;</button>
+            </div>
+        </section>
     </header>
     <main>
         <article class="Warning">
@@ -76,4 +86,8 @@ Si vous ne remplissez pas ces conditions, veuillez quitter cette page.</p>
             <p>© 2025 Equipouet. All rights reserved.</p>
         </footer>
     </body> 
+    <script src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js"></script>
+<script>
+  const { animate, scroll } = Motion
+</script>
 </html>

@@ -22,6 +22,19 @@ async function genererPresentation() {
     
 
     article.append(img, pseudo, role, description);
+    // 👉 animation stylée
+    animate(
+        pseudo,
+        { 
+            y: [50, -10, 0],   // monte puis descend un peu
+            scale: [0.8, 1.1, 1],  // petit zoom dramatique
+            opacity: [0, 1]    // fade-in
+        },
+        { 
+            duration: 2.5,
+            easing: "ease-out"
+        }
+    );
 }
 genererPresentation();
 
