@@ -3,6 +3,7 @@
     "id": 1,
     "title": "Charly & Gortash pour Morningstar_ttt",
     "imageUrl": "image/charlyGortash.png",
+    "alt": "Charly & Gortash pour Morningstar_ttt",
     "category": {
       "id": 1,
       "name": "Illustration"
@@ -12,6 +13,7 @@
     "id": 2,
     "title": "Charly et Gortash pour Morningstar_ttt",
     "imageUrl": "image/ChaTash.png",
+    "alt": "Charly et Gortash pour Morningstar_ttt",
     "category": {
       "id": 1,
       "name": "Logo"
@@ -21,6 +23,7 @@
     "id": 3,
     "title": "Archiduc Gortash en corset",
     "imageUrl": "image/GortashCorset.png",
+    "alt": "Archiduc Gortash en corset",
     "category": {
       "id": 1,
       "name": "Illustration"
@@ -30,6 +33,7 @@
     "id": 4,
     "title": "Tavara et Gortash",
     "imageUrl": "image/TavTash.png",
+    "alt": "Tavara et Gortash",
     "category": {
       "id": "nsfw",
       "name": "Illustration NSFW"
@@ -39,6 +43,7 @@
     "id": 5,
     "title": "Halsin, Tavara et Gortash",
     "imageUrl": "image/threesome HalxTavxGortash.png",
+    "alt": "Halsin, Tavara et Gortash",
     "category": {
       "id": "nsfw",
       "name": "Illustration"
@@ -47,6 +52,7 @@
     "id": 6,
     "title": "Charly & Tavara",
     "imageUrl": "image/Chavara.png",
+    "alt": "Charly & Tavara",
     "category": {
       "id": 1,
       "name": "Illustration"
@@ -55,6 +61,7 @@
     "id": 7,
     "title": "Charly & Tavara sexy version",
     "imageUrl": "image/Chavarasexy.png",
+    "alt": "Charly & Tavara sexy version",
     "category": {
       "id": "nsfw",
       "name": "Illustration"

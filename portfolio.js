@@ -13,6 +13,7 @@ async function genererWork() {
 
         const img = document.createElement("img");
         img.src = article.imageUrl;
+        img.alt = article.alt
         img.crossOrigin = "anonymous";
 
         const caption = document.createElement("figcaption");

@@ -1,5 +1,6 @@
 {   
     "pp" : "image/pp.png",
+    "alt" : "Photo de profil",
     "pseudo" : "Equipouet",
     "role" : "Développeur Web, illustratrice",
     "description" : "Bonjour, je suis Equipouet, une développeuse web passionnée et une illustratrice tout aussi passionnée. J'adore créer des sites web interactifs et visuellement attrayants, ainsi que des illustrations uniques qui racontent des histoires captivantes. Mon objectif est de combiner mes compétences en développement web et en illustration pour offrir des expériences numériques exceptionnelles."

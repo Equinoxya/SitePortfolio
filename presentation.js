@@ -5,9 +5,10 @@ async function genererPresentation() {
     const article = document.querySelector(".presentation") 
     const img = document.createElement("img");
         img.src = presentations.pp;
+        img.alt = presentations.alt;
         img.classList.add("pp");
 
-    const pseudo = document.createElement("h2");
+    const pseudo = document.createElement("h1");
         pseudo.innerText = presentations.pseudo;
         pseudo.classList.add("pseudo");
 
