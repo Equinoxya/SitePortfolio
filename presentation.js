@@ -12,7 +12,7 @@ async function genererPresentation() {
         pseudo.innerText = presentations.pseudo;
         pseudo.classList.add("pseudo");
 
-    const role = document.createElement("h3");
+    const role = document.createElement("h2");
         role.innerText = presentations.role;
         role.classList.add("role");
     
@@ -25,3 +25,26 @@ async function genererPresentation() {
 }
 
 genererPresentation();
+
+// Récupération des liens des réseaux sociaux
+async function genererReseaux() {
+    const reponse = await fetch("presentation.json");
+    const presentations = await reponse.json();
+    const x = document.querySelector(".x");
+    const instagram = document.querySelector(".instagram");
+    const bluesky = document.querySelector(".bluesky");
+    const patreon = document.querySelector(".patreon");
+    x.addEventListener("click", function() {
+        window.open(presentations.x, "_blank");
+    });
+    instagram.addEventListener("click", function() {
+        window.open(presentations.instagram, "_blank");
+    });
+    bluesky.addEventListener("click", function() {
+        window.open(presentations.bluesky, "_blank");
+    });
+    patreon.addEventListener("click", function() {
+        window.open(presentations.patreon, "_blank");
+    });
+}
+genererReseaux();
