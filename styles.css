@@ -137,6 +137,9 @@ a {
     box-shadow: 0 15px 50px rgb(0, 0, 0);
     border-radius: 15px;
 }
+.presentation{
+    padding: 5%;
+}
 
 .presentation p {
     font-size: 20px;
