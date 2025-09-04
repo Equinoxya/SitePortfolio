@@ -23,7 +23,6 @@ async function genererPresentation() {
 
     article.append(img, pseudo, role, description);
 }
-
 genererPresentation();
 
 // Récupération des liens des réseaux sociaux
