@@ -1,14 +1,12 @@
 <!DOCTYPE html>
-<html lang="fr">
-  <head>
+<html lang="en">
+<head>
     <link href="styles.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@100..900&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/e96e865ef4.js" crossorigin="anonymous"></script>
     <script src="portfolio.js" defer></script>
-    <script src="presentation.js" defer></script>
-    <script src="carrousel.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8" />
     <meta name="description" content="Portfolio de Equipouet, développeuse web et illustratrice. Découvrez mes projets web et mes illustrations uniques." />
@@ -19,22 +17,21 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     
-    <meta property="og:title" content="Equipouet, developpeuse web et illustratrice"/>
-    <meta property="og:type" content="website" />
-    <meta property="og:description" content="Site portfolio" />
-    <meta property="og:locale" content="fr_FR" />
-    <meta property="og:image" content="https://raw.githubusercontent.com/Equinoxya/SitePortfolio/main/image/pp.png"/>
-    <meta property="og:url" content="https://equinoxya.github.io/SitePortfolio" />
+    <meta property=og:title content="Equipouet, developpeuse web et illustratrice"/>
+    <meta property=”og:type” content=”website” />
+    <meta property=og:description content=" Site portfolio" />
+    <meta property=og:locale content=fr_FR />
+    <meta property=og:image content="https://raw.githubusercontent.com/Equinoxya/SitePortfolio/main/image/pp.png"/>
+    <meta property=og:url content=https://equinoxya.github.io/SitePortfolio />
     <meta name=twitter:card content=summary />
     <meta name=twitter:site content=https://equinoxya.github.io/SitePortfolio />
     <meta name=twitter:creator content=@equipouet />
     <meta name=twitter:title content="Equipouet, developpeuse web et illustratrice" />
     <meta name=twitter:description content="Site portfolio" />
     <meta name=twitter:image content= "https://raw.githubusercontent.com/Equinoxya/SitePortfolio/main/image/pp.png" />
-
-    <title>Equipouet</title>
-  </head>
-  <body class="background">
+    <title>Equipouet - Projects</title>
+</head>
+<body class="background">
     <header>
         <nav class="nav">
             <ul>
@@ -44,34 +41,29 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
-        <article class="presentation">
-        </article>
-        <section class="carrousel">
-            <h3>Nouveautés</h3>
-            <div class="carousel-container" >
-                <button type="button" class="carousel-button left">&#10094;</button>
-                    <div class="carousel-track">
-                    </div>
-                <button type="button" class="carousel-button right">&#10095;</button>
-            </div>
-        </section>
     </header>
     <main>
+       <article class="Warning">
+            <h2>Contenu explicite – 18+ uniquement</h2>
+            <p>
+En accédant à cette section, vous acceptez les conditions suivantes :<br/>
+
+Vous avez au moins 18 ans (ou l’âge légal dans votre pays).<br/>
+
+Vous consultez ce contenu de votre plein gré.<br/>
+
+Vous comprenez que les œuvres exposées peuvent contenir de la nudité et/ou des thématiques sexuelles.<br/>
+
+Si vous ne remplissez pas ces conditions, veuillez quitter cette page.</p>
+            <button>Oui</button>
+            <button>Non</button>
+        </article>
+        <section id="portfolio" class="portfolio" >
+            <h2 id="h2Portfolio">Mes Projets</h2>
+            <button class="nsfw">NSFW</button>
+            <div class="gallery"></div>
+	    </section> 
+    </main>
     
-        </main>
-        <footer>
-            
-            <section class="rs">
-                <i class="fa-brands fa-patreon patreon"></i>
-                <i class="fa-brands fa-instagram instagram"></i>
-                <i class="fa-brands fa-bluesky bluesky"></i>
-                <i class="fa-brands fa-x-twitter x"></i>
-            </section>
-            <p>© 2025 Equipouet. All rights reserved.</p>
-        </footer>
-    </body> 
-    <script src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js"></script>
-<script>
-  const { animate, scroll } = Motion
-</script>
+</body>
 </html>
