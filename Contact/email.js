@@ -1,5 +1,5 @@
 async function email() {
-    const response = await fetch('presentation.json');
+    const response = await fetch('/About/presentation.json');
     const data = await response.json();
     const email = data.email;
     const mailBtn = document.querySelector('.fa-envelope');
@@ -9,7 +9,7 @@ async function email() {
             .then(() => {
                 // Création du message temporaire
                 const message = document.createElement('div');
-                message.textContent = 'Adresse e-mail copiée dans le presse-papiers';
+                message.textContent = 'Email address copied to clipboard';
                 // Style simple, tu peux personnaliser
                 message.style.position = 'fixed';
                 message.style.top = '30%';
@@ -28,7 +28,7 @@ async function email() {
                 }, 2000);
             })
             .catch(err => {
-                console.error('Erreur lors de la copie de l\'adresse e-mail : ', err);
+                console.error('Error copying email address: ', err);
             });
     });
 }
