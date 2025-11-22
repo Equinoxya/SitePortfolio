@@ -99,6 +99,9 @@ article h1 {
 article img{
     width: 30%;
 }
+article p{
+    width: 45%;
+}
 .emergency{
     display: flex;
     margin: 5%;
