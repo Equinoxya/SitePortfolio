@@ -32,6 +32,7 @@ header {
 
 ul {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
     gap: 20px;
@@ -340,6 +341,7 @@ button {
     article{
         flex-direction: column;
         align-items: center;
+        margin: 5%;
     }
     article img {
         width: 250px;
@@ -352,5 +354,11 @@ button {
     }
     .carousel-image{
         width: 250px;
+    }
+    li{
+        width: 45%;
+    }
+    article h1{
+        font-size: 35px;
     }
 }
