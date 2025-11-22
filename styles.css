@@ -1,9 +1,12 @@
 /* ================== Reset & Base ================== */
 *{
-    font-family: "Grenze", serif;
+    font-family: "Grenze Gotisch", serif;
 }
 .nav, .nav * {
-    font-family: "Grenze", serif !important;
+    font-family: "Grenze Gotisch", serif !important;
+}
+p{
+    font-family: "Grenze", serif;
 }
 html, body {
     margin: 0;
@@ -96,9 +99,6 @@ article h1 {
 article img{
     width: 30%;
 }
-article p{
-    width: 30%;
-}
 .emergency{
     display: flex;
     margin: 5%;
@@ -173,6 +173,9 @@ footer {
     justify-content: center;
     align-items: center;
     gap: 20px;
+}
+figcaption{
+    font-family: "Grenze", serif;
 }
 
 /* ================== Portfolio & Presentation ================== */
@@ -267,6 +270,7 @@ figure img {
 /* ================== Buttons ================== */
 button {
     padding: 10px 20px;
+    font-family: "Grenze", serif;
     font-size: 16px;
     border: none;
     border-radius: 10px;
@@ -287,6 +291,7 @@ button {
     justify-content: center;
     text-align: center;
     font-size: 30px;
+    font-family: "Grenze", serif;
     width: 90%;
     height: 85vh;
     gap: 20px;
