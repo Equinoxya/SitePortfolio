@@ -363,4 +363,7 @@ button {
     article h1{
         font-size: 35px;
     }
+    article p{
+        width: 75%;
+    }
 }
