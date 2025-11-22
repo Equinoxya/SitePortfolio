@@ -1,5 +1,5 @@
 async function genererPresentation() {
-    const reponse = await fetch("presentation.json");
+    const reponse = await fetch("Data/presentation.json");
     const presentations = await reponse.json();
 
     const article = document.querySelector(".presentation") 

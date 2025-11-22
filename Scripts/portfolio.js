@@ -1,5 +1,5 @@
 async function genererWork() {
-    const reponse = await fetch("portfolio.json");
+    const reponse = await fetch("/Data/portfolio.json");
     const works = await reponse.json();
 
     const sectionGallery = document.querySelector(".gallery");

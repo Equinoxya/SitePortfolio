@@ -1,5 +1,5 @@
 async function email() {
-    const response = await fetch('/About/presentation.json');
+    const response = await fetch('/Data/presentation.json');
     const data = await response.json();
     const email = data.email;
     const mailBtn = document.querySelector('.fa-envelope');

@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     // 2️⃣ Génération du carrousel
-    const response = await fetch("/Projects/portfolio.json");
+    const response = await fetch("/Data/portfolio.json");
     const works = await response.json();
 
     const leftButton = document.querySelector(".carousel-button.left");
