@@ -1,4 +1,7 @@
 /* ================== Reset & Base ================== */
+*{
+    font-family: "Grenze", serif;
+}
 html, body {
     margin: 0;
     padding: 0;
