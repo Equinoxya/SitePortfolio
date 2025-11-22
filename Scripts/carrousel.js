@@ -75,3 +75,24 @@ document.addEventListener("DOMContentLoaded", async () => {
         renderImage(currentIndex);
     });
 });
+async function genererReseaux() {
+    const reponse = await fetch("/Data/presentation.json");
+    const presentations = await reponse.json();
+    const x = document.querySelector(".x");
+    const instagram = document.querySelector(".instagram");
+    const bluesky = document.querySelector(".bluesky");
+    const patreon = document.querySelector(".patreon");
+    x.addEventListener("click", function() {
+        window.open(presentations.x, "_blank");
+    });
+    instagram.addEventListener("click", function() {
+        window.open(presentations.instagram, "_blank");
+    });
+    bluesky.addEventListener("click", function() {
+        window.open(presentations.bluesky, "_blank");
+    });
+    patreon.addEventListener("click", function() {
+        window.open(presentations.patreon, "_blank");
+    });
+}
+genererReseaux();
