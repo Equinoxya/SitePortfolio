@@ -2,6 +2,9 @@
 *{
     font-family: "Grenze", serif;
 }
+.nav, .nav * {
+    font-family: "Grenze", serif !important;
+}
 html, body {
     margin: 0;
     padding: 0;
@@ -24,6 +27,9 @@ header {
 }
 
 /* ================== Navigation ================== */
+.nav, .nav ul, .nav li, .nav a {
+    font-family: "Grenze", serif; /* même police que ton body */
+}
 .nav {
     display: flex;
     align-items: center;
