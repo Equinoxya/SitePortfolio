@@ -314,6 +314,18 @@ button {
 }
 
 /* ================== Media Queries ================== */
+@media (max-width: 1061px){
+    .gallery{
+        flex-direction: column;
+        width: 100%;
+    }
+    figure{
+        width: 95%;
+    }
+    img{
+        width: none;
+    }
+}
 @media (max-width: 768px) {
     .gallery, .portfolio, .presentation {
         flex-direction: column;
@@ -361,7 +373,7 @@ button {
         width: 45%;
     }
     article h1{
-        font-size: 35px;
+        font-size: 20px;
     }
     article p{
         width: 75%;
