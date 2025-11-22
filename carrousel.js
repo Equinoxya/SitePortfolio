@@ -8,7 +8,6 @@ async function generateCarrousel() {
 
     if (!leftButton || !rightButton || !track) return;
 
-    // Filtrer et trier
     const filteredWorks = works
         .filter(work => work.category.id !== "nsfw")
         .sort((a, b) => a.index - b.index);
@@ -17,6 +16,8 @@ async function generateCarrousel() {
     if (lastThreeWorks.length === 0) return;
 
     let currentIndex = 0;
+    let startX = 0; // ajouté
+    let endX = 0;   // ajouté
 
     // Précharger les images
     lastThreeWorks.forEach((work, i) => {
@@ -24,20 +25,18 @@ async function generateCarrousel() {
         img.src = work.imageUrl;
         img.alt = work.alt || "";
         img.classList.add("carousel-image");
-        img.style.display = i === 0 ? "block" : "none"; // afficher la première
+        img.style.display = i === 0 ? "block" : "none";
         track.appendChild(img);
     });
 
     const images = track.querySelectorAll("img");
 
-    // Fonction pour afficher l'image courante
     function renderImage(index) {
         images.forEach((img, i) => {
             img.style.display = i === index ? "block" : "none";
         });
     }
 
-    // Boutons avec boucle infinie
     leftButton.addEventListener("click", (event) => {
         event.preventDefault();
         event.stopPropagation();
@@ -51,27 +50,27 @@ async function generateCarrousel() {
         currentIndex = (currentIndex + 1) % lastThreeWorks.length;
         renderImage(currentIndex);
     });
-    
-    slider.addEventListener("touchstart", (e) => {
+
+    // Swipe tactile sur le track
+    track.addEventListener("touchstart", (e) => {
         startX = e.touches[0].clientX;
     });
 
-    slider.addEventListener("touchmove", (e) => {
-        endX = e.touches[0].clientX;
-    });
+    track.addEventListener("touchend", (e) => {
+        endX = e.changedTouches[0].clientX;
+        const deltaX = endX - startX;
+        const threshold = 50;
 
-    slider.addEventListener("touchend", () => {
-        const threshold = 50
-        if (startX - endX > threshold){
+        if (deltaX > threshold) {
+            // swipe droite → précédent
+            currentIndex = (currentIndex - 1 + lastThreeWorks.length) % lastThreeWorks.length;
+            renderImage(currentIndex);
+        } else if (deltaX < -threshold) {
+            // swipe gauche → suivant
             currentIndex = (currentIndex + 1) % lastThreeWorks.length;
             renderImage(currentIndex);
-        } else if (endX - startX > threshold){
-            currentIndex = ( currentIndex - 1 + lastThreeWorks.length) % lastThreeWorks.length;
-            renderImage(currentIndex)
         }
-    })
-
+    });
 }
 
-// DOM prêt
 document.addEventListener("DOMContentLoaded", generateCarrousel);
