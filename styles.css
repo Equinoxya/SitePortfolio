@@ -337,4 +337,20 @@ button {
         width: 95%;
         font-size: 20px;
     }
+    article{
+        flex-direction: column;
+        align-items: center;
+    }
+    article img {
+        width: 250px;
+    }
+    .emergency{
+        flex-direction: column;
+    }
+    .carousel-button{
+        display: none;
+    }
+    .carousel-image{
+        width: 250px;
+    }
 }

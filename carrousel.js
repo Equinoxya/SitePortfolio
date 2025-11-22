@@ -51,6 +51,26 @@ async function generateCarrousel() {
         currentIndex = (currentIndex + 1) % lastThreeWorks.length;
         renderImage(currentIndex);
     });
+    
+    slider.addEventListener("touchstart", (e) => {
+        startX = e.touches[0].clientX;
+    });
+
+    slider.addEventListener("touchmove", (e) => {
+        endX = e.touches[0].clientX;
+    });
+
+    slider.addEventListener("touchend", () => {
+        const threshold = 50
+        if (startX - endX > threshold){
+            currentIndex = (currentIndex + 1) % lastThreeWorks.length;
+            renderImage(currentIndex);
+        } else if (endX - startX > threshold){
+            currentIndex = ( currentIndex - 1 + lastThreeWorks.length) % lastThreeWorks.length;
+            renderImage(currentIndex)
+        }
+    })
+
 }
 
 // DOM prêt
