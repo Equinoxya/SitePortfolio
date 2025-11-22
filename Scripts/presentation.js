@@ -40,7 +40,7 @@ genererPresentation();
 
 // Récupération des liens des réseaux sociaux
 async function genererReseaux() {
-    const reponse = await fetch("presentation.json");
+    const reponse = await fetch("/Data/presentation.json");
     const presentations = await reponse.json();
     const x = document.querySelector(".x");
     const instagram = document.querySelector(".instagram");
