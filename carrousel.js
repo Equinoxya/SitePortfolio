@@ -72,5 +72,17 @@ async function generateCarrousel() {
         }
     });
 }
-
+const Emergency = document.querySelector("emergencyTitle")
 document.addEventListener("DOMContentLoaded", generateCarrousel);
+animate(
+        Emergency,
+        { 
+            y: [50, -10, 0],   // monte puis descend un peu
+            scale: [0.8, 1.1, 1],  // petit zoom dramatique
+            opacity: [0, 1]    // fade-in
+        },
+        { 
+            duration: 2.5,
+            easing: "ease-out"
+        }
+    );
