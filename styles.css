@@ -87,16 +87,21 @@ article h1 {
 article img{
     width: 30%;
 }
-article h4{
-    padding: 5%;
-    font-size:20px;
+.emergency{
+    display: flex;
+    margin: 5%;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+    font-family: "Grenze Gotisch", serif;
+    font-size: 20px;
+    
 }
 
 /* ================== Headings ================== */
 h1 {
     font-size: 75px;
     margin: 0;
-    font-family: "Grenze Gotisch", serif;
 }
 h2 {
     font-size: 30px;
