@@ -1,11 +1,32 @@
-async function generateCarrousel() {
+document.addEventListener("DOMContentLoaded", async () => {
+    // 1️⃣ Animation du titre
+    const emergency = document.querySelector(".emergencyTitle");
+    if (emergency) {
+        emergency.animate(
+            { 
+                transform: [
+                    "translateY(50px) scale(0.8)", 
+                    "translateY(-10px) scale(1.1)", 
+                    "translateY(0) scale(1)"
+                ],
+                opacity: [0, 1, 1]
+            },
+            { 
+                duration: 2500,
+                easing: "ease-out",
+                direction: "alternate",
+                iterations: Infinity
+            }
+        );
+    }
+
+    // 2️⃣ Génération du carrousel
     const response = await fetch("portfolio.json");
     const works = await response.json();
 
     const leftButton = document.querySelector(".carousel-button.left");
     const rightButton = document.querySelector(".carousel-button.right");
     const track = document.querySelector(".carousel-track");
-
     if (!leftButton || !rightButton || !track) return;
 
     const filteredWorks = works
@@ -16,10 +37,8 @@ async function generateCarrousel() {
     if (lastThreeWorks.length === 0) return;
 
     let currentIndex = 0;
-    let startX = 0; // ajouté
-    let endX = 0;   // ajouté
+    let startX = 0;
 
-    // Précharger les images
     lastThreeWorks.forEach((work, i) => {
         const img = document.createElement("img");
         img.src = work.imageUrl;
@@ -37,52 +56,22 @@ async function generateCarrousel() {
         });
     }
 
-    leftButton.addEventListener("click", (event) => {
-        event.preventDefault();
-        event.stopPropagation();
+    leftButton.addEventListener("click", () => {
         currentIndex = (currentIndex - 1 + lastThreeWorks.length) % lastThreeWorks.length;
         renderImage(currentIndex);
     });
 
-    rightButton.addEventListener("click", (event) => {
-        event.preventDefault();
-        event.stopPropagation();
+    rightButton.addEventListener("click", () => {
         currentIndex = (currentIndex + 1) % lastThreeWorks.length;
         renderImage(currentIndex);
     });
 
-    // Swipe tactile sur le track
-    track.addEventListener("touchstart", (e) => {
-        startX = e.touches[0].clientX;
-    });
-
+    track.addEventListener("touchstart", (e) => startX = e.touches[0].clientX);
     track.addEventListener("touchend", (e) => {
-        endX = e.changedTouches[0].clientX;
-        const deltaX = endX - startX;
+        const deltaX = e.changedTouches[0].clientX - startX;
         const threshold = 50;
-
-        if (deltaX > threshold) {
-            // swipe droite → précédent
-            currentIndex = (currentIndex - 1 + lastThreeWorks.length) % lastThreeWorks.length;
-            renderImage(currentIndex);
-        } else if (deltaX < -threshold) {
-            // swipe gauche → suivant
-            currentIndex = (currentIndex + 1) % lastThreeWorks.length;
-            renderImage(currentIndex);
-        }
+        if (deltaX > threshold) currentIndex = (currentIndex - 1 + lastThreeWorks.length) % lastThreeWorks.length;
+        else if (deltaX < -threshold) currentIndex = (currentIndex + 1) % lastThreeWorks.length;
+        renderImage(currentIndex);
     });
-}
-const Emergency = document.querySelector("emergencyTitle")
-document.addEventListener("DOMContentLoaded", generateCarrousel);
-animate(
-        Emergency,
-        { 
-            y: [50, -10, 0],   // monte puis descend un peu
-            scale: [0.8, 1.1, 1],  // petit zoom dramatique
-            opacity: [0, 1]    // fade-in
-        },
-        { 
-            duration: 2.5,
-            easing: "ease-out"
-        }
-    );
+});
