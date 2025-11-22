@@ -6,7 +6,7 @@ html, body {
     font-family: "Grenze", serif;
     font-optical-sizing: auto;
     font-weight: 400;
-    color: rgb(165, 165, 165);
+    color: rgb(0, 0, 0);
     display: flex;
     flex-direction: column;
 }
@@ -46,9 +46,9 @@ li {
     justify-content: center;
     width: 20%;
     height: 5vh;
-    color: rgb(153, 153, 153);
-    background: linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-                radial-gradient(circle at center, #c81e3a 0%, #0a0a0a 100%);
+    color: rgb(0, 0, 0);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),
+                radial-gradient(circle at center, #ffffff 0%, #0a0a0a 100%);
     border-radius: 15px;
     box-shadow: 0 15px 50px rgb(0, 0, 0);
     animation: clignote 2s infinite alternate;
@@ -61,7 +61,7 @@ li {
 
 a {
     text-decoration: none;
-    color: rgb(196, 196, 196);
+    color: rgb(0, 0, 0);
 }
 
 /* ================== Main ================== */
@@ -93,10 +93,10 @@ h3 {
 /* ================== Footer ================== */
 footer {
     width: 100%;
-    background: linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-                radial-gradient(circle at center, #c81e3a 0%, #0a0a0a 100%);
+    background: linear-gradient(0deg, rgba(255, 255, 25rgba(255, 230, 198, 0.6),0,0,0.6)),
+                radial-gradient(circle at center, #ffffff 0%, #ffffff 100%);
     box-shadow: 0 15px 50px rgb(0, 0, 0);
-    color: rgb(196, 196, 196);
+    color: rgb(0, 0, 0);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -107,8 +107,8 @@ footer {
 /* ================== Contact ================== */
 .contact {
     font-size: 75px;
-    background-color: rgb(37, 1, 1);
-    color: rgb(196, 196, 196);
+    background-color: rgb(255, 250, 244);
+    color: rgb(0, 0, 0);
     width: 45%;
     height: 30vh;
     display: flex;
@@ -123,10 +123,10 @@ footer {
 .background {
     width: 100%;
     height: 100%;
-    background-color: rgb(37, 1, 1);
+    background-color: rgb(255, 255, 255);
     background-image: 
-        repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0, rgba(94, 5, 5, 0.1) 1px, transparent 1px, transparent 20px),
-        repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.1) 0, rgba(0, 0, 0, 0.1) 1px, transparent 1px, transparent 20px);
+        repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.1) 0, rgba(0, 0, 0, 0.1) 1px, transparent 1px, transparent 20px),
+        repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0.1) 0, rgba(0, 0, 0, 0.1) 1px, transparent 1px, transparent 20px);
     background-size: 70px 70px;
 }
 
@@ -151,9 +151,9 @@ footer {
     padding: 20px;
     margin: 2.5%;
     border-radius: 15px;
-    box-shadow: 0 15px 50px rgb(0, 0, 0);
-    background: linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-                radial-gradient(circle at center, #c81e3a 0%, #0a0a0a 100%);
+    box-shadow: 0 15px 50px rgb(252, 252, 252);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),
+                radial-gradient(circle at center, #fcfcfc 0%, #c5c5c5 100%);
 }
 
 .presentation {
@@ -199,8 +199,8 @@ footer {
     width: 50%;
     flex-shrink: 0;
     border-radius: 10px;
-    border: 5px solid rgb(77, 77, 77);
-    box-shadow: 0 15px 50px rgb(0, 0, 0);
+    border: 5px solid rgb(255, 255, 255);
+    box-shadow: 0 15px 50px rgb(255, 255, 255);
 }
 
 .carousel-button {
@@ -208,7 +208,7 @@ footer {
     border: none;
     font-size: 40px;
     cursor: pointer;
-    color: rgb(153, 153, 153);
+    color: rgb(0, 0, 0);
     transition: color 0.3s ease;
 }
 
@@ -235,10 +235,10 @@ button {
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    color: rgb(153, 153, 153);
-    background: linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-                radial-gradient(circle at center, #c81e3a 0%, #0a0a0a 100%);
-    box-shadow: 0 15px 50px rgb(146, 2, 2);
+    color: rgb(0, 0, 0);
+    background: linear-gradient(0deg, rgba(253, 253, 253, 0.6), rgba(184, 184, 184, 0.6)),
+                radial-gradient(circle at center, #fcfcfc 0%, #0a0a0a 100%);
+    box-shadow: 0 15px 50px rgb(121, 121, 121);
     transition: background-color 0.3s ease;
 }
 
@@ -255,9 +255,9 @@ button {
     height: 85vh;
     gap: 20px;
     border-radius: 15px;
-    box-shadow: 0 15px 50px rgb(0, 0, 0);
-    background: linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-                radial-gradient(circle at center, #c81e3a 0%, #0a0a0a 100%);
+    box-shadow: 0 15px 50px rgb(156, 156, 156);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.6), rgba(158, 158, 158, 0.6)),
+                radial-gradient(circle at center, #ffffff 0%, #ffffff 100%);
 }
 
 /* ================== Profile Picture ================== */

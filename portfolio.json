@@ -66,5 +66,51 @@
       "id": "nsfw",
       "name": "Illustration"
     }
+  },{
+    "index": 8,
+    "title": "Tavara RDR",
+    "imageUrl": "image/TavaraRDR.png",
+    "alt": "Tavara on RDO",
+    "category": {
+      "id": "1",
+      "name": "Illustration"
+    }
+  },{
+    "index": 9,
+    "title": "Lord Enver Gortash",
+    "imageUrl": "image/GortashFast.png",
+    "alt": "Gortash devant le trone avec l'artefact",
+    "category": {
+      "id": "1",
+      "name": "Illustration"
+    }
+  }
+  ,{
+    "index": 10,
+    "title": "Tavara",
+    "imageUrl": "image/TavaraPlage.png",
+    "alt": "Tavara à la plage",
+    "category": {
+      "id": "1",
+      "name": "Illustration"
+    }
+  },{
+    "index": 11,
+    "title": "Tavara",
+    "imageUrl": "image/TavaraRaph.png",
+    "alt": "Tavara qui refuse Raphael",
+    "category": {
+      "id": "1",
+      "name": "Illustration"
+    }
+  },{
+    "index": 12,
+    "title": "Tavitha Dragmire",
+    "imageUrl": "image/TavithaBleu.png",
+    "alt": "Tavitha avec son marteau",
+    "category": {
+      "id": "1",
+      "name": "Illustration"
+    }
   }
 ]
