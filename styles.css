@@ -73,6 +73,24 @@ main {
     align-items: center;
     justify-content: center;
 }
+article{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 2%;
+}
+article h1 {
+    font-size: 48px;
+}
+article img{
+    width: 50%;
+}
+article h4{
+    padding: 5%;
+    font-size:20px;
+}
 
 /* ================== Headings ================== */
 h1 {
@@ -88,6 +106,9 @@ h2 {
 h3 {
     font-size: 40px;
     margin: 5%;
+}
+h4{
+    font-family: "Grenze Gotisch", serif;
 }
 
 /* ================== Footer ================== */
