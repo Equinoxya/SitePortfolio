@@ -8,11 +8,11 @@ async function genererPresentation() {
         img.alt = presentations.alt;
         img.classList.add("pp");
 
-    const pseudo = document.createElement("h1");
+    const pseudo = document.createElement("h2");
         pseudo.innerText = presentations.pseudo;
         pseudo.classList.add("pseudo");
 
-    const role = document.createElement("h2");
+    const role = document.createElement("h3");
         role.innerText = presentations.role;
         role.classList.add("role");
     
