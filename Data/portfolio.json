@@ -85,5 +85,14 @@
       "id": "1",
       "name": "Illustration"
     }
+  },{
+    "index": 10,
+    "title": "Charly & Tavara",
+    "imageUrl": "/Images/Chavarasexy.webp",
+    "alt": "Tavara et Charly en tenue sexy",
+    "category": {
+      "id": "1",
+      "name": "Illustration"
+    }
   }
 ]
