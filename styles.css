@@ -226,6 +226,8 @@ figure img {
     width: 50%;
     flex-shrink: 0;
     object-fit: cover;
+    border: 3px solid rgb(255, 204, 137);
+    border-radius: 10px;
 }
 
 .carousel-button {
