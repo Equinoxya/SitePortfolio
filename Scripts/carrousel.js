@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         .filter(work => work.category.id !== "nsfw")
         .sort((a, b) => a.index - b.index);
 
-    const lastThreeWorks = filteredWorks.slice(-3);
+    const lastThreeWorks = filteredWorks.slice(-3).reverse();
     if (lastThreeWorks.length === 0) return;
 
     let currentIndex = 0;

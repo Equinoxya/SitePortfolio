@@ -211,6 +211,7 @@ figure img {
     margin: 2.5%;
     position: relative;
     overflow: hidden;
+    gap: 50px;
 }
 
 .carousel-container,
