@@ -236,7 +236,38 @@ figure img {
     transition: color 0.3s ease;
     background-color: transparent;
 }
+/* ==================Pricing============= */
 
+.pricing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 80%;
+    gap: 50px;
+}
+.pricing img {
+    width: 300px;
+    height: auto;
+}
+.pricing article {
+    border: 3px solid rgb(255, 204, 137);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    width: 300px;
+    text-align: center;
+    font-size: 25px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(33 29 37);
+}
+.pricing-plans {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+}
 /* ================== Profile Picture ================== */
 .pp {
     width: 150px;

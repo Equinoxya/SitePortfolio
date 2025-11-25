@@ -1,0 +1,26 @@
+{
+    "pricing" : [
+        {
+            "name":"Portrait",
+            "price": "20€",
+            "exemple": [
+                "/Images/TavaraRDR.webp"
+                
+            ]
+        },
+        {
+            "name": "Full Body",
+            "price": "40€",
+            "exemple": [
+                "/Images/Gortashcorset.webp"
+            ]
+        },
+        {
+            "name": "Additional Character",
+            "price": "Contact us",
+            "features": [
+                "/Images/charlyGortash.webp"
+            ]
+        }
+    ]
+}
