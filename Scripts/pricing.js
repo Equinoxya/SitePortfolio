@@ -11,6 +11,7 @@ async function pricingPlans() {
     pricingData.pricing.forEach(plan => {
         const article = document.createElement("article");
         article.classList.add("plan");
+        
 
         // Nom
         const title = document.createElement("h3");
