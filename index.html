@@ -49,6 +49,29 @@
                 <li><a href="#pricing">Pricing</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+     <script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Supprime le # dans l'URL au chargement si présent
+  if(window.location.hash) {
+    history.replaceState(null, '', window.location.pathname);
+  }
+
+  // Gestion du scroll smooth pour tous les liens internes
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault(); // bloque le # automatique
+      const targetId = this.getAttribute('href').slice(1);
+      const targetEl = document.getElementById(targetId);
+      if(targetEl) targetEl.scrollIntoView({ behavior: 'smooth' });
+
+      // On ne change pas l'URL => reste propre
+      history.replaceState(null, '', window.location.pathname);
+    });
+  });
+
+});
+</script>>
         </nav>
         <section class="carrousel" id="home">
             <h1>New arrivals</h1>

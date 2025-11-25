@@ -64,27 +64,6 @@ function setupWarning() {
 }
 
 
-// Toggle NSFW au clic
-function filter() {
-    const btn = document.querySelector(".nsfw");
-
-    setupWarning(); // Initialize warning dialog and its buttons
-
-    if (!btn) return;
-    btn.addEventListener('click', function () {
-        const warning = document.querySelector(".Warning");
-        if (warning && warning.style.display !== "none") {
-            warning.style.display = "flex";
-        } else {
-            const projets = document.querySelectorAll(".projet");
-            projets.forEach(projet => {
-                if (projet.dataset.categoryId === "nsfw") {
-                    projet.style.display = projet.style.display === "none" ? "flex" : "none";
-                }
-            });
-        }
-    });
-}
 async function genererReseaux() {
     const reponse = await fetch("/Data/presentation.json");
     const presentations = await reponse.json();
@@ -105,6 +84,7 @@ async function genererReseaux() {
         window.open(presentations.patreon, "_blank");
     });
 }
+
 genererReseaux();
 
 
