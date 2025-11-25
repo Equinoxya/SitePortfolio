@@ -309,10 +309,16 @@ figure img {
     li{
         width: 45%;
     }
+    ul{
+        gap: 0px;
+    }
     article h1{
         font-size: 20px;
     }
     article p{
         width: 75%;
+    }
+    h1{
+        font-size: 50px;
     }
 }
