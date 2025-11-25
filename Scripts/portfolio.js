@@ -16,10 +16,7 @@ async function genererWork() {
         img.alt = article.alt
         img.crossOrigin = "anonymous";
 
-        const caption = document.createElement("figcaption");
-        caption.innerText = article.title;
-
-        figure.append(img, caption);
+        figure.append(img);
 
         // Masquer les NSFW par défaut
         if (article.category.id === "nsfw") {
