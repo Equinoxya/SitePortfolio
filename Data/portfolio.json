@@ -31,25 +31,6 @@
   },
   {
     "index": 4,
-    "title": "Tavara et Gortash",
-    "imageUrl": "/Images/TavTash.webp",
-    "alt": "Tavara et Gortash",
-    "category": {
-      "id": "nsfw",
-      "name": "Illustration NSFW"
-    }
-  }
-  ,{
-    "index": 5,
-    "title": "Halsin, Tavara et Gortash",
-    "imageUrl": "/Images/threesome-HalxTavxGortash.webp",
-    "alt": "Halsin, Tavara et Gortash",
-    "category": {
-      "id": "nsfw",
-      "name": "Illustration"
-    }
-  },{
-    "index": 6,
     "title": "Charly & Tavara",
     "imageUrl": "/Images/Chavara.webp",
     "alt": "Charly & Tavara",
@@ -57,17 +38,9 @@
       "id": 1,
       "name": "Illustration"
     }
-  },{
-    "index": 7,
-    "title": "Charly & Tavara sexy version",
-    "imageUrl": "/Images/Chavarasexy.webp",
-    "alt": "Charly & Tavara sexy version",
-    "category": {
-      "id": "nsfw",
-      "name": "Illustration"
-    }
-  },{
-    "index": 8,
+  },
+  {
+    "index": 5,
     "title": "Tavara RDR",
     "imageUrl": "/Images/TavaraRDR.webp",
     "alt": "Tavara on RDO",
@@ -76,7 +49,7 @@
       "name": "Illustration"
     }
   },{
-    "index": 9,
+    "index": 6,
     "title": "Lord Enver Gortash",
     "imageUrl": "/Images/GortashFast.webp",
     "alt": "Gortash devant le trone avec l'artefact",
@@ -86,7 +59,7 @@
     }
   }
   ,{
-    "index": 10,
+    "index": 7,
     "title": "Tavara",
     "imageUrl": "/Images/TavaraPlage.webp",
     "alt": "Tavara à la plage",
@@ -95,7 +68,7 @@
       "name": "Illustration"
     }
   },{
-    "index": 11,
+    "index": 8,
     "title": "Tavara",
     "imageUrl": "/Images/TavaraRaph.webp",
     "alt": "Tavara qui refuse Raphael",
@@ -104,7 +77,7 @@
       "name": "Illustration"
     }
   },{
-    "index": 12,
+    "index": 9,
     "title": "Tavitha Dragmire",
     "imageUrl": "/Images/TavithaBleu.webp",
     "alt": "Tavitha avec son marteau",
