@@ -16,6 +16,7 @@ html, body {
     font-optical-sizing: auto;
     font-weight: 400;
     color: rgb(255, 204, 137);
+    scroll-behavior: smooth;
 
 }
 
@@ -36,7 +37,7 @@ header {
 .nav {
     display: flex;
     align-items: center;
-    width: 100%;
+    width: 90%;
     height: 11vh;
     font-size: 25px;
     justify-content: space-between;
@@ -250,18 +251,6 @@ figure img {
     gap: 20px;
     font-size: 30px;   
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
