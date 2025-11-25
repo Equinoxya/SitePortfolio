@@ -151,6 +151,7 @@ footer {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    width: 75%;
 
 }
 figcaption{
@@ -170,7 +171,7 @@ figcaption{
     font-size: 20px;
 }
 figure img {
-    width: 300px;
+    width: 330px;
     max-height: 80vh;
     height: auto;
     object-fit: contain;
@@ -270,9 +271,6 @@ figure img {
         flex-direction: column;
         width: 95%;
     }
-    img{
-        width: none;
-    }
     .presentation p{
         width: 100%;
     }
@@ -284,7 +282,7 @@ figure img {
     }
 
     figure img {
-        width: 65%;
+        width: 100%;
         max-height: 60vh;
         height: auto;
         object-fit: contain;
