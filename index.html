@@ -10,6 +10,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Grenze&display=swap" rel="stylesheet">
     <script src="/Scripts/carrousel.js" defer></script>
+    <script src="/Scripts/email.js" defer></script>
+    <script src="/Scripts/portfolio.js" defer></script>
+    <script src="/Scripts/presentation.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8" />
     <meta name="description" content="Portfolio de Equipouet, développeuse web et illustratrice. Découvrez mes projets web et mes illustrations uniques." />
@@ -37,28 +40,15 @@
   <body class="background">
     <header>
         <nav class="nav">
+            <img src="/Images/pp.webp" alt="personnage qui salue de la main" class="logo"/>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#portfolio">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
-        <article>
-            <h1 class="emergencyTitle">💥Emergency Commission 💥 </h1>
-            <div class="emergency">
-            <p>The last few months have been very difficult...<br> 
-                
-                I am no longer able to pay my health insurance and am therefore unable to seek medical treatment.<br>
-                
-                I am therefore reopening my commissions as a matter of urgency. 🥺</p>
-                <img src="/Images/commsopen.webp" alt="princing comms">.
-            </div>
-        </article>
-        
-    </header>
-    <main>
-        <section class="carrousel">
+        <section class="carrousel" id="home">
             <h2>New arrivals</h2>
             <div class="carousel-container" >
                 <button type="button" class="carousel-button left">&#10094;</button>
@@ -67,9 +57,32 @@
                 <button type="button" class="carousel-button right">&#10095;</button>
             </div>
         </section>
+        <article class="presentation" id="about">
+        </article>
+        
+    </header>
+    <main>
+        <section id="portfolio" class="portfolio">
+            <h2 id="h2Portfolio">My Projects</h2>
+            <div class="gallery"></div>
+	    </section>
+        <section id="contact" class="contact" style="padding:50px; text-align:center;">
+        <h2 style="font-size:2rem; margin-bottom:30px; font-weight:bold;">Pour me contacter : </h2>
+        <div class="social-icons" style="display:flex; justify-content:center; gap:30px; align-items:center;">
+            <a href="https://x.com/equipouet" target="_blank" class="social-link">
+            <i class="fa-brands fa-x-twitter color"></i>
+            </a>
+            <a href="https://bsky.app/profile/equipouet.bsky.social" target="_blank" class="social-link">
+            <i class="fab fa-bluesky color"></i> <!-- Font Awesome a Bluesky depuis v6.5 -->
+            </a>
+            <a href="https://www.instagram.com/equipouet" target="_blank" class="social-link">
+            <i class="fab fa-instagram color"></i>
+            </a>
+            <i class="fa-solid fa-envelope social-link"></i>
+        </div>
+        </section>
     </main>
     <footer>
-            
         <section class="rs">
             <i class="fa-brands fa-patreon patreon"></i>
             <i class="fa-brands fa-instagram instagram"></i>
