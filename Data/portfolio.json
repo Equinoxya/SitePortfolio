@@ -94,5 +94,14 @@
       "id": "1",
       "name": "Illustration"
     }
+  },{
+    "index": 11,
+    "title": "Tavara Wyrmbane",
+    "imageUrl": "/Images/TavaraWyrmbane.webp",
+    "alt": "Tavara Wyrmbane",
+    "category": {
+      "id": "1",
+      "name": "Illustration"
+    }
   }
 ]
