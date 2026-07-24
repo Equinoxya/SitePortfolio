@@ -1,11 +1,46 @@
+/* ==========================================================================
+   Equipouet — Portfolio
+   Direction : manuscrit enluminé sombre. Le fond reste nocturne (void),
+   l'or est l'encre principale, le vin (wine) est la touche rare —
+   cire de sceau, jamais décorative sans raison.
+   ========================================================================== */
+
+:root {
+    --void: #15111c;
+    --void-deep: #0e0b13;
+    --panel: #241d2e;
+    --panel-light: #2f2638;
+
+    --gold: #e3b567;
+    --gold-bright: #f6d999;
+    --gold-dim: rgba(227, 181, 103, 0.35);
+
+    --wine: #6e2032;
+    --wine-bright: #9c3348;
+
+    --parchment: #f2e6c9;
+    --ink-shadow: rgba(0, 0, 0, 0.55);
+
+    --radius-card: 14px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+    }
+}
+
 /* ================== Reset & Base ================== */
-*{
+* {
     font-family: "Grenze Gotisch", serif;
+    box-sizing: border-box;
 }
 .nav, .nav * {
     font-family: "Grenze Gotisch", serif !important;
 }
-p{
+p {
     font-family: "Grenze", serif;
 }
 html, body {
@@ -15,9 +50,31 @@ html, body {
     font-family: "Grenze", serif;
     font-optical-sizing: auto;
     font-weight: 400;
-    color: rgb(255, 204, 137);
+    color: var(--gold);
     scroll-behavior: smooth;
+}
 
+::selection {
+    background: var(--wine);
+    color: var(--parchment);
+}
+
+:focus-visible {
+    outline: 2px solid var(--gold-bright);
+    outline-offset: 3px;
+}
+
+/* ================== Background ================== */
+.background {
+    width: 100%;
+    height: 100%;
+    background-color: var(--void);
+    background-image:
+        radial-gradient(ellipse at 50% -10%, rgba(110, 32, 50, 0.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 110%, rgba(227, 181, 103, 0.08) 0%, transparent 60%),
+        repeating-linear-gradient(45deg, rgba(227, 181, 103, 0.05) 0, rgba(227, 181, 103, 0.05) 1px, transparent 1px, transparent 22px),
+        repeating-linear-gradient(-45deg, rgba(227, 181, 103, 0.05) 0, rgba(227, 181, 103, 0.05) 1px, transparent 1px, transparent 22px);
+    background-size: auto, auto, 70px 70px, 70px 70px;
 }
 
 /* ================== Header ================== */
@@ -32,7 +89,7 @@ header {
 
 /* ================== Navigation ================== */
 .nav, .nav ul, .nav li, .nav a {
-    font-family: "Grenze", serif; /* même police que ton body */
+    font-family: "Grenze", serif;
 }
 .nav {
     display: flex;
@@ -61,27 +118,56 @@ li {
     justify-content: center;
     width: 20%;
     height: 5vh;
-    animation: clignote 2s infinite alternate;
+    position: relative;
 }
 
-@keyframes clignote {
-    0% { opacity: 1; }
-    100% { opacity: 0.7; }
+li a {
+    position: relative;
+    padding-bottom: 4px;
+}
+
+li a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -2px;
+    width: 0%;
+    height: 1px;
+    background: var(--gold-bright);
+    box-shadow: 0 0 6px var(--gold-dim);
+    transition: width 0.35s ease, left 0.35s ease;
+}
+
+li a:hover::after,
+li a:focus-visible::after {
+    width: 100%;
+    left: 0%;
 }
 
 a {
     text-decoration: none;
-    color: rgb(255, 204, 137);
+    color: var(--gold);
+    transition: color 0.25s ease;
 }
+a:hover {
+    color: var(--gold-bright);
+}
+
 .logo {
     width: 100px;
     height: auto;
     border-radius: 50%;
-    border: 3px solid rgb(255, 204, 137);
+    border: 3px solid var(--gold);
+    box-shadow: 0 0 0 4px var(--void), 0 0 18px var(--gold-dim);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
+.logo:hover {
+    transform: rotate(-6deg) scale(1.05);
+    box-shadow: 0 0 0 4px var(--void), 0 0 26px var(--gold-dim);
+}
+
 /* ================== Main ================== */
 main {
-
     display: flex;
     width: 100%;
     padding: 20px 0;
@@ -92,40 +178,82 @@ main {
 section, article {
     margin-bottom: 10%;
 }
+
 /* ================== Headings ================== */
 h1 {
-    font-size: 75px;
+    font-size: clamp(42px, 6vw, 75px);
     margin: 0;
+    text-align: center;
+    letter-spacing: 1px;
+    background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 60%, var(--wine-bright) 130%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 2px 0 var(--ink-shadow);
+    position: relative;
+    padding-bottom: 22px;
+}
+h1::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%) rotate(45deg);
+    width: 12px;
+    height: 12px;
+    background: var(--wine);
+    box-shadow: -22px 0 0 -3px transparent, 22px 0 0 -3px transparent;
+    border: 2px solid var(--gold);
+}
+h1::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 5.5px;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
 }
 h2 {
-    font-size: 60px;
+    font-size: clamp(36px, 5vw, 60px);
     font-family: "Grenze Gotisch", serif;
+    color: var(--gold-bright);
+    text-shadow: 0 1px 0 var(--ink-shadow), 0 0 20px var(--gold-dim);
 }
 h3 {
-    font-size: 40px;
+    font-size: clamp(24px, 3vw, 40px);
     margin: 5%;
+    color: var(--wine-bright);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 22px;
 }
-h4{
+h4 {
     font-family: "Grenze Gotisch", serif;
 }
 
 /* ================== Footer ================== */
 footer {
-    background: linear-gradient(0deg, rgba(255, 255, 25rgba(255, 230, 198, 0.6),0,0,0.6)),
-                radial-gradient(circle at center, #ffffff 0%, #ffffff 100%);
-    box-shadow: 0 15px 50px rgb(0, 0, 0);
-    color: rgb(255, 204, 137);
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(227, 181, 103, 0.08) 0%, transparent 65%),
+        var(--void-deep);
+    border-top: 1px solid var(--gold-dim);
+    box-shadow: 0 -10px 40px var(--ink-shadow);
+    color: var(--gold);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 3%;
+    font-size: 15px;
+    letter-spacing: 1px;
 }
 
 /* ================== Contact ================== */
 .contact {
-    font-size: 75px;
-    color: rgb(255, 204, 137);
+    font-size: clamp(40px, 6vw, 75px);
+    color: var(--gold);
     width: 45%;
     height: 30vh;
     display: flex;
@@ -134,71 +262,135 @@ footer {
     justify-content: center;
 }
 .color {
-    color: rgb(255, 204, 137);
+    color: var(--gold);
 }
 
-/* ================== Background ================== */
-.background {
-    width: 100%;
-    height: 100%;
-    background-color: rgb(33 29 37);
-    background-image: 
-        repeating-linear-gradient(45deg, rgba(253, 202, 62, 0.1) 0, rgba(253, 253, 253, 0.1) 1px, transparent 1px, transparent 20px),
-        repeating-linear-gradient(-45deg, rgba(255, 196, 87, 0.1) 0, rgba(255, 255, 255, 0.1) 1px, transparent 1px, transparent 20px);
-    background-size: 70px 70px;
-}
-
-/* ================== Gallery ================== */
-.gallery{
-    display: flex;
-    flex-wrap: wrap;
+.social-link {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 75%;
-
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid var(--gold-dim);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, color 0.3s ease;
+    cursor: pointer;
 }
-figcaption{
-    font-family: "Grenze", serif;
+.social-link:hover {
+    border-color: var(--gold);
+    box-shadow: 0 0 22px var(--gold-dim);
+    transform: translateY(-4px);
+    color: var(--wine-bright);
 }
 
-/* ================== Portfolio & Presentation ================== */
-.portfolio{
+/* ================== Gallery / Portfolio ================== */
+.portfolio {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.projet{
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+    width: 75%;
+    gap: 24px;
+}
+figcaption {
+    font-family: "Grenze", serif;
+}
+.projet {
     display: flex;
     flex-direction: column;
     align-items: center;
     font-size: 20px;
+    padding: 10px;
+    border: 1px solid var(--gold-dim);
+    border-radius: var(--radius-card);
+    background: linear-gradient(180deg, var(--panel), var(--void-deep));
+    overflow: hidden;
+    transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
 }
-figure :hover {
-    transform: scale(1.5);
-    transition: transform 0.3s ease;
+.projet:hover {
+    border-color: var(--gold);
+    box-shadow: 0 12px 30px var(--ink-shadow), 0 0 24px var(--gold-dim);
+    transform: translateY(-6px);
 }
 figure img {
     width: 330px;
     max-height: 80vh;
     height: auto;
     object-fit: contain;
+    transition: transform 0.4s ease;
 }
-.presentation p {
-    font-size: 20px;
-    line-height: 1.5;
-    width: 80%;
-    margin: 0;
-    padding: 2%;
+.projet:hover img {
+    transform: scale(1.04);
 }
+
+/* ================== Presentation ================== */
 .presentation {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 80%;
     margin-bottom: 5%;
-    gap: 20px;
+    gap: 16px;
+    padding: 4% 2%;
+    position: relative;
+    background: linear-gradient(180deg, var(--panel), var(--void-deep));
+    border: 1px solid var(--gold-dim);
+    border-radius: var(--radius-card);
+    box-shadow: 0 0 0 1px var(--void) inset, 0 20px 50px var(--ink-shadow);
+}
+.presentation::before {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border: 1px solid var(--gold-dim);
+    border-radius: calc(var(--radius-card) - 4px);
+    pointer-events: none;
+}
+.presentation p {
+    font-size: 20px;
+    line-height: 1.6;
+    width: 80%;
+    margin: 0;
     padding: 2%;
-    border: rgb(255, 204, 137) 3px inset;
+    color: var(--parchment);
+}
+.presentation p.description::first-letter,
+.presentation .description::first-letter {
+    font-family: "Grenze Gotisch", serif;
+    font-size: 3.2em;
+    float: left;
+    line-height: 0.8;
+    padding-right: 8px;
+    color: var(--gold-bright);
+    text-shadow: 0 0 18px var(--gold-dim);
+}
+
+/* ================== Profile Picture ================== */
+.pp {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--gold);
+    box-shadow: 0 0 0 6px var(--void), 0 0 30px var(--gold-dim);
+}
+
+.pseudo {
+    color: var(--gold-bright);
+}
+.role {
+    color: var(--wine-bright);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 20px;
+    border-top: 1px solid var(--gold-dim);
+    border-bottom: 1px solid var(--gold-dim);
+    padding: 6px 18px;
 }
 
 /* ================== Carousel ================== */
@@ -231,20 +423,33 @@ figure img {
     width: 50%;
     flex-shrink: 0;
     object-fit: cover;
-    border: 3px solid rgb(255, 204, 137);
+    border: 3px solid var(--gold);
     border-radius: 10px;
+    box-shadow: 0 20px 50px var(--ink-shadow), 0 0 0 6px var(--void), 0 0 0 7px var(--gold-dim);
 }
 
 .carousel-button {
-    border: none;
-    font-size: 40px;
+    border: 1px solid var(--gold-dim);
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    font-size: 28px;
     cursor: pointer;
-    color: rgb(255, 204, 137);
-    transition: color 0.3s ease;
+    color: var(--gold);
+    transition: color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
     background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-/* ==================Pricing============= */
+.carousel-button:hover {
+    color: var(--gold-bright);
+    border-color: var(--gold);
+    box-shadow: 0 0 20px var(--gold-dim);
+    transform: scale(1.08);
+}
 
+/* ================== Pricing ================== */
 .pricing {
     display: flex;
     flex-direction: column;
@@ -253,65 +458,65 @@ figure img {
     width: 80%;
     gap: 50px;
 }
-.pricing article:hover {
-    transform: rotateY(360deg);
-    transition: transform 1s ease-in-out
-}
-.pricing img {
-    width: 300px;
-    height: auto;
-}
-.pricing article {
-    border: 3px solid rgb(255, 204, 137);
-    border-radius: 10px;
-    padding: 20px;
-    margin: 20px;
-    width: 300px;
-    text-align: center;
-    font-size: 25px;
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(33 29 37);
-}
 .pricing-plans {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 50px;
 }
-@keyframes spin {
-  0% { transform: rotate(0deg) scale(1); }
-  100% { transform: rotate(360deg) scale(1); }
-}
-/* ================== Profile Picture ================== */
-.pp {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 5px solid rgb(255, 204, 137);
-}
-
-/* ================== Socials ================== */
-.rs {
+.pricing article {
+    border: 1px solid var(--gold-dim);
+    border-radius: var(--radius-card);
+    padding: 24px 20px;
+    margin: 0;
+    width: 300px;
+    text-align: center;
+    font-size: 25px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
-    gap: 20px;
-    font-size: 30px;   
+    gap: 12px;
+    background: linear-gradient(180deg, var(--panel), var(--void-deep));
+    transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
 }
-.fa-solid:hover{
-    cursor: pointer;
+.pricing article:hover {
+    border-color: var(--gold);
+    box-shadow: 0 16px 36px var(--ink-shadow), 0 0 26px var(--gold-dim);
+    transform: translateY(-8px);
 }
-
+.pricing article h3 {
+    margin: 0;
+    color: var(--gold-bright);
+    font-size: 26px;
+}
+.pricing article p {
+    margin: 0;
+    color: var(--wine-bright);
+    font-size: 22px;
+    letter-spacing: 1px;
+}
+.pricing img {
+    width: 100%;
+    max-width: 260px;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid var(--gold-dim);
+}
+.pricing .examples,
+.pricing .features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
 
 /* ================== Media Queries ================== */
-@media (max-width: 1061px){
-    .gallery{
+@media (max-width: 1061px) {
+    .gallery {
         flex-direction: column;
         width: 95%;
     }
-    .presentation p{
+    .presentation p {
         width: 100%;
     }
 }
@@ -320,8 +525,7 @@ figure img {
         flex-direction: column;
         align-items: center;
     }
-    .contact {  
-        font-size: 50px;
+    .contact {
         height: auto;
     }
     figure img {
@@ -330,48 +534,44 @@ figure img {
         height: auto;
         object-fit: contain;
     }
-    .pricing article{
+    .pricing article {
         margin: 0;
     }
     img, video {
         max-width: 100%;
         height: auto;
     }
-
     .Warning {
         width: 95%;
         font-size: 20px;
     }
-    article{
+    article {
         flex-direction: column;
         align-items: center;
-        margin-top : 5%;
+        margin-top: 5%;
     }
     article img {
         width: 250px;
     }
-    .emergency{
+    .emergency {
         flex-direction: column;
     }
-    .carousel-button{
+    .carousel-button {
         display: none;
     }
-    .carousel-image{
+    .carousel-image {
         width: 260px;
     }
-    li{
+    li {
         width: 45%;
     }
-    ul{
+    ul {
         gap: 0px;
     }
-    article h1{
+    article h1 {
         font-size: 20px;
     }
-    article p{
+    article p {
         width: 75%;
-    }
-    h1{
-        font-size: 50px;
     }
 }
