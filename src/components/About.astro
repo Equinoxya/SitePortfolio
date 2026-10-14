@@ -4,24 +4,23 @@ import { img } from "../lib/images";
 import me from "../data/presentation.json";
 ---
 
-<section id="about" class="mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 md:grid-cols-[minmax(0,320px)_1fr]">
-  <div class="mx-auto w-3/4 max-w-[320px] -rotate-3 md:w-full">
-    <div class="sticker">
-      <Picture
-        src={img(me.photo)}
-        alt={me.photoAlt}
-        formats={["avif", "webp"]}
-        fallbackFormat="webp"
-        quality={70}
-        widths={[240, 320, 455]}
-        sizes="(min-width: 768px) 320px, 75vw"
-        class="aspect-[4/5] h-auto w-full rounded-[11px] object-cover"
-      />
-    </div>
-  </div>
+<section id="about" class="mx-auto grid max-w-6xl items-center gap-14 px-4 py-20 sm:px-6 md:grid-cols-[minmax(0,300px)_1fr]">
+  <figure class="pinned tape-blue m-0 mx-auto w-3/4 max-w-[300px] -rotate-3 md:w-full">
+    <Picture
+      src={img(me.photo)}
+      alt={me.photoAlt}
+      formats={["avif", "webp"]}
+      fallbackFormat="webp"
+      quality={70}
+      widths={[240, 300, 450, 600]}
+      sizes="(min-width: 768px) 300px, 75vw"
+      class="aspect-[3/4] h-auto w-full object-cover"
+    />
+    <figcaption class="hand mt-2 text-center text-2xl text-bic">that's me!</figcaption>
+  </figure>
 
   <div>
-    <h2 class="section-title">Hi, I'm Equi</h2>
+    <h2 class="section-title">About</h2>
     <div class="mt-6 max-w-[62ch] space-y-4 text-lg leading-relaxed">
       {me.description.map((p) => <p>{p}</p>)}
     </div>

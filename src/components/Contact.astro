@@ -10,29 +10,24 @@ const socials = [
 ] as const;
 ---
 
-<section id="contact" class="px-4 py-20">
-  <div
-    class="mx-auto max-w-4xl rounded-[36px] border-[3px] border-aubergine bg-aubergine px-6 py-14 text-center text-lilas shadow-[8px_10px_0_var(--color-rousse)] sm:px-12"
-  >
-    <h2 class="section-title text-souci">Want a drawing?</h2>
+<section id="contact" class="px-4 py-20 sm:px-6">
+  <div class="pinned tape-blue mx-auto max-w-3xl -rotate-1 px-6 py-14 text-center sm:px-12">
+    <h2 class="section-title">Want a drawing?</h2>
     <p class="mx-auto mt-4 max-w-md text-lg">Write to me with your idea, your character and your budget.</p>
 
     <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
-      <a href={`mailto:${me.email}`} class="btn bg-souci text-aubergine">{me.email}</a>
-      <button type="button" id="copy-email" data-email={me.email} class="btn bg-white text-aubergine">Copy email</button>
+      <a href={`mailto:${me.email}`} class="btn">{me.email}</a>
+      <button type="button" id="copy-email" data-email={me.email} class="btn-ghost cursor-pointer text-bic hover:text-crayon">
+        Copy email
+      </button>
     </div>
-    <p id="copy-status" class="mt-3 h-6 font-semibold text-mousse" role="status" aria-live="polite"></p>
+    <p id="copy-status" class="hand mt-2 h-8 text-2xl text-crayon" role="status" aria-live="polite"></p>
 
-    <ul class="mt-8 flex flex-wrap justify-center gap-4">
+    <ul class="mt-6 flex flex-wrap justify-center gap-6">
       {
         socials.map((s) => (
           <li>
-            <a
-              href={s.href}
-              target="_blank"
-              rel="noopener"
-              class="flex items-center gap-2 rounded-full border-2 border-lilas/40 px-4 py-2 font-semibold transition-colors hover:border-souci hover:text-souci"
-            >
+            <a href={s.href} target="_blank" rel="noopener" class="flex items-center gap-2 font-semibold text-ink no-underline hover:text-crayon">
               <SocialIcon name={s.name} class="size-5" />
               {s.label}
             </a>
@@ -49,7 +44,7 @@ const socials = [
   btn.addEventListener("click", async () => {
     try {
       await navigator.clipboard.writeText(btn.dataset.email!);
-      status.textContent = "Email copied";
+      status.textContent = "Email copied!";
     } catch {
       status.textContent = "Couldn't copy. Use the email link instead.";
     }

@@ -1,5 +1,5 @@
 [
-  { "name": "Portrait", "price": "20€", "detail": "Head and shoulders, one character.", "example": "TavaraRDR.webp", "color": "souci" },
-  { "name": "Full body", "price": "40€", "detail": "The whole character, head to toe.", "example": "GortashCorset.webp", "color": "mousse" },
-  { "name": "Extra character", "price": "On request", "detail": "Add someone to the scene. Ask me for a quote.", "example": "charlyGortash.webp", "color": "rousse" }
+  { "name": "Portrait", "price": "20€", "detail": "Head and shoulders, one character.", "example": "TavaraRDR.webp" },
+  { "name": "Full body", "price": "40€", "detail": "The whole character, head to toe.", "example": "GortashCorset.webp" },
+  { "name": "Extra character", "price": "On request", "detail": "Add someone to the scene. Ask me for a quote.", "example": "charlyGortash.webp" }
 ]

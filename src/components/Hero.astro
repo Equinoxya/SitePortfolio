@@ -2,47 +2,40 @@
 import { Picture } from "astro:assets";
 import { img } from "../lib/images";
 import works from "../data/portfolio.json";
-import me from "../data/presentation.json";
 import pricing from "../data/pricing.json";
 
-// Les 3 dernières illustrations (index le plus haut)
-const latest = [...works].sort((a, b) => b.index - a.index).slice(0, 3);
-const cheapest = pricing.find((p) => /\d/.test(p.price))?.price;
+// Les 4 dernières illustrations (index le plus haut) forment le collage
+const latest = [...works].sort((a, b) => b.index - a.index).slice(0, 4);
 
-// Position de chaque sticker dans la pile
-const pile = [
-  "left-[2%] top-[8%] -rotate-[9deg] w-[46%]",
-  "left-[30%] top-0 rotate-[3deg] w-[46%] z-10",
-  "right-[2%] top-[14%] rotate-[11deg] w-[42%]",
+// Position de chaque illustration scotchée (desktop)
+const spots = [
+  { box: "md:left-[2%] md:top-[4%] md:w-[46%] -rotate-3", tape: "" },
+  { box: "md:right-[0%] md:top-0 md:w-[42%] rotate-[4deg]", tape: "tape-blue" },
+  { box: "md:left-[0%] md:top-[56%] md:w-[38%] rotate-2", tape: "tape-blue" },
+  { box: "md:right-[6%] md:top-[52%] md:w-[40%] -rotate-[5deg]", tape: "" },
 ];
 ---
 
-<section id="top" class="mx-auto grid max-w-6xl items-center gap-10 px-4 pt-12 pb-20 md:grid-cols-2 md:pt-20">
-  <div class="order-2 md:order-1">
-    <h1
-      class="font-display text-[clamp(3.25rem,15vw,4.75rem)] md:text-[clamp(3.5rem,6vw,5.25rem)] leading-[0.85] font-black tracking-tight [text-shadow:5px_5px_0_var(--color-souci)]"
-    >
-      {me.pseudo}
-    </h1>
-    <p class="mt-5 font-display text-2xl font-semibold sm:text-3xl">{me.role}</p>
-    <p class="mt-4 max-w-md text-lg leading-relaxed">
-      I draw characters: fan art, original characters and commissions.{cheapest && ` Portraits start at ${cheapest}.`}
+<section id="top" class="mx-auto grid max-w-6xl gap-14 px-4 pt-6 pb-24 sm:px-6 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:pt-14">
+  <div class="flex flex-col gap-5">
+    <h1 class="text-balance text-5xl leading-[1.02] font-semibold tracking-tight sm:text-[3.5rem]">Hi, I'm Equi. I draw characters.</h1>
+    <p class="max-w-md text-lg leading-relaxed">
+      Illustrator and web developer. Here are some pages from my sketchbook: fan art, original characters and
+      commissions.
     </p>
-    <div class="mt-8 flex flex-wrap gap-3">
-      <a href="#gallery" class="btn bg-souci">See the gallery</a>
-      <a href="#pricing" class="btn bg-white">Commission me</a>
+    <div class="flex flex-wrap items-center gap-3">
+      <a href="#pricing" class="btn">Commission me</a>
+      <a href="#gallery" class="btn-ghost">See the gallery</a>
     </div>
+    <ul class="hand mt-6 -rotate-2 text-3xl leading-tight text-crayon" aria-label="Prices">
+      {pricing.map((p) => <li>{p.name}: {p.price}</li>)}
+    </ul>
   </div>
 
-  <div class="relative order-1 aspect-[5/4] md:order-2" aria-label="Latest illustrations">
+  <div class="relative grid grid-cols-2 gap-x-5 gap-y-8 md:block md:min-h-[640px]" aria-label="Latest illustrations">
     {
       latest.map((w, i) => (
-        <a
-          href="#gallery"
-          class:list={["sticker drop absolute", pile[i]]}
-          style={`--delay:${i * 120}ms`}
-          tabindex="-1"
-        >
+        <figure class:list={["pinned m-0 md:absolute", spots[i].box, spots[i].tape]}>
           <Picture
             src={img(w.image)}
             alt={w.alt}
@@ -50,46 +43,14 @@ const pile = [
             fallbackFormat="webp"
             quality={70}
             widths={[240, 360, 480]}
-            sizes="(min-width: 768px) 25vw, 45vw"
-            loading="eager"
-            fetchpriority={i === 1 ? "high" : "auto"}
+            sizes="(min-width: 768px) 280px, 45vw"
+            loading={i < 2 ? "eager" : "lazy"}
+            fetchpriority={i === 0 ? "high" : "auto"}
             class="aspect-[3/4] h-auto w-full object-cover"
           />
-        </a>
+          <figcaption class="hand mt-2 text-center text-xl leading-tight text-bic sm:text-2xl">{w.title}</figcaption>
+        </figure>
       ))
     }
-
-    <div class="drop absolute -bottom-6 left-0 z-20 w-[30%] -rotate-6" style="--delay:420ms">
-      <Picture
-        src={img(me.avatar)}
-        alt={me.avatarAlt}
-        formats={["avif", "webp"]}
-        fallbackFormat="webp"
-        quality={70}
-        widths={[160, 320]}
-        sizes="(min-width: 768px) 14vw, 30vw"
-        loading="eager"
-        class="aspect-square h-auto w-full rounded-full border-[6px] border-white object-cover shadow-[5px_6px_0_var(--color-aubergine)]"
-      />
-      <span
-        class="absolute -top-3 -right-4 rotate-6 rounded-2xl border-[3px] border-aubergine bg-mousse px-3 py-1 font-display text-xl font-bold"
-        aria-hidden="true">Hi!</span
-      >
-    </div>
   </div>
 </section>
-
-<style>
-  /* Le seul moment animé de la page : la pile de stickers qui tombe */
-  .drop {
-    animation: drop 0.55s cubic-bezier(0.2, 1.4, 0.4, 1) both;
-    animation-delay: var(--delay);
-  }
-  @keyframes drop {
-    from {
-      opacity: 0;
-      translate: 0 -40px;
-      scale: 1.15;
-    }
-  }
-</style>

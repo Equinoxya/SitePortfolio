@@ -3,29 +3,18 @@ import { Picture } from "astro:assets";
 import { img } from "../lib/images";
 import pricing from "../data/pricing.json";
 
-const bg: Record<string, string> = {
-  souci: "bg-souci",
-  mousse: "bg-mousse",
-  rousse: "bg-rousse",
-};
-const tilt = ["-rotate-2", "rotate-1", "-rotate-1"];
+const tilt = ["-rotate-2", "rotate-2", "-rotate-1"];
 ---
 
-<section id="pricing" class="mx-auto max-w-6xl px-4 py-20">
+<section id="pricing" class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
   <h2 class="section-title">Pricing</h2>
   <p class="mt-4 max-w-xl text-lg">Commissions in my style. Tell me about your character and we'll go from there.</p>
 
-  <ul class="mt-12 grid gap-10 md:grid-cols-3 md:gap-8">
+  <ul class="mt-14 grid gap-14 sm:grid-cols-3 sm:gap-8">
     {
       pricing.map((plan, i) => (
-        <li
-          class:list={[
-            "tag relative rounded-[28px] border-[3px] border-aubergine p-5 pt-10 shadow-[6px_8px_0_var(--color-aubergine)]",
-            bg[plan.color],
-            tilt[i % tilt.length],
-          ]}
-        >
-          <div class="sticker mx-auto w-3/5 rotate-3">
+        <li class="flex flex-col items-center text-center">
+          <figure class:list={["pinned m-0 w-3/5 sm:w-4/5", tilt[i % tilt.length], i % 2 && "tape-blue"]}>
             <Picture
               src={img(plan.example)}
               alt={`Example: ${plan.name.toLowerCase()}`}
@@ -33,35 +22,19 @@ const tilt = ["-rotate-2", "rotate-1", "-rotate-1"];
               fallbackFormat="webp"
               quality={70}
               widths={[200, 300, 400]}
-              sizes="(min-width: 768px) 200px, 60vw"
-              class="aspect-[3/4] h-auto w-full rounded-[11px] object-cover"
+              sizes="(min-width: 640px) 25vw, 60vw"
+              class="aspect-[3/4] h-auto w-full object-cover"
             />
-          </div>
-          <h3 class="mt-6 font-display text-3xl font-bold">{plan.name}</h3>
-          <p class:list={["mt-1 font-display font-black", /\d/.test(plan.price) ? "text-5xl" : "text-4xl"]}>{plan.price}</p>
-          <p class="mt-3 text-base">{plan.detail}</p>
+          </figure>
+          <h3 class="mt-6 text-xl font-semibold">{plan.name}</h3>
+          <p class="hand -rotate-2 text-5xl leading-tight font-bold text-crayon">{plan.price}</p>
+          <p class="mt-1 max-w-[26ch]">{plan.detail}</p>
         </li>
       ))
     }
   </ul>
 
-  <div class="mt-12">
-    <a href="#contact" class="btn bg-white">Ask for a commission</a>
+  <div class="mt-14 flex justify-center">
+    <a href="#contact" class="btn">Ask for a commission</a>
   </div>
 </section>
-
-<style>
-  /* Le trou de l'étiquette */
-  .tag::before {
-    content: "";
-    position: absolute;
-    top: 14px;
-    left: 50%;
-    width: 18px;
-    height: 18px;
-    translate: -50% 0;
-    border-radius: 999px;
-    border: 3px solid var(--color-aubergine);
-    background: var(--color-lilas);
-  }
-</style>

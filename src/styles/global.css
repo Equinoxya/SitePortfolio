@@ -1,69 +1,85 @@
 @import "tailwindcss";
-@import "@fontsource-variable/gluten";
-@import "@fontsource-variable/figtree";
+@import "@fontsource-variable/caveat";
+@import "@fontsource-variable/work-sans";
 
 @theme {
-  --color-lilas: #efe6ff;
-  --color-lilas-deep: #dccbfb;
-  --color-aubergine: #2b1745;
-  --color-mousse: #8fcb3e;
-  --color-rousse: #ff6b3d;
-  --color-souci: #ffc93c;
+  --color-paper: #f3f6fa;
+  --color-grid: #dfe6f0;
+  --color-ink: #23283a;
+  --color-bic: #2b4cc4;
+  --color-crayon: #c93a2f;
 
-  --font-display: "Gluten Variable", cursive;
-  --font-sans: "Figtree Variable", system-ui, sans-serif;
-
-  --shadow-sticker: 5px 6px 0 var(--color-aubergine);
-  --shadow-sticker-lg: 8px 10px 0 var(--color-aubergine);
+  --font-hand: "Caveat Variable", cursive;
+  --font-sans: "Work Sans Variable", system-ui, sans-serif;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 6rem;
+    scroll-padding-top: 2rem;
   }
   body {
-    @apply bg-lilas text-aubergine font-sans antialiased;
-    /* petits pois discrets, façon papier de carnet */
-    background-image: radial-gradient(
-      color-mix(in oklab, var(--color-aubergine) 9%, transparent) 1.2px,
-      transparent 1.4px
-    );
-    background-size: 22px 22px;
+    @apply bg-paper text-ink font-sans antialiased;
+    /* Papier quadrillé */
+    background-image:
+      linear-gradient(var(--color-grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+  a {
+    @apply text-bic underline-offset-4;
+  }
+  a:hover {
+    @apply text-crayon;
   }
   :focus-visible {
-    outline: 3px solid var(--color-rousse);
+    outline: 2px solid var(--color-crayon);
     outline-offset: 3px;
-    border-radius: 6px;
+    border-radius: 4px;
   }
   ::selection {
-    background: var(--color-souci);
-    color: var(--color-aubergine);
+    background: color-mix(in oklab, var(--color-bic) 25%, transparent);
   }
 }
 
 @layer components {
-  /* Le sticker : bord blanc épais + ombre dure */
-  .sticker {
-    @apply block overflow-hidden rounded-[18px] border-[7px] border-white bg-white;
-    box-shadow: var(--shadow-sticker);
+  /* Une illustration scotchée dans le carnet */
+  .pinned {
+    @apply relative block bg-white p-3 pb-4;
+    box-shadow: 0 2px 6px rgb(35 40 58 / 0.18);
+  }
+  .pinned::before {
+    content: "";
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    width: 90px;
+    height: 28px;
+    translate: -50% 0;
+    rotate: 4deg;
+    background: rgb(201 58 47 / 0.35);
+    pointer-events: none;
+  }
+  .pinned.tape-blue::before {
+    rotate: -5deg;
+    background: rgb(43 76 196 / 0.3);
   }
 
   .btn {
-    @apply inline-flex items-center gap-2 rounded-full border-[3px] border-aubergine px-6 py-3 font-display text-lg font-bold leading-none transition-transform duration-150;
-    box-shadow: 3px 4px 0 var(--color-aubergine);
+    @apply inline-flex items-center rounded-md bg-bic px-6 py-3.5 font-semibold text-white no-underline transition-colors;
   }
   .btn:hover {
-    transform: translate(-1px, -2px);
-    box-shadow: 4px 6px 0 var(--color-aubergine);
+    @apply bg-ink text-white;
   }
-  .btn:active {
-    transform: translate(2px, 3px);
-    box-shadow: 0 0 0 var(--color-aubergine);
+  .btn-ghost {
+    @apply inline-flex items-center px-2 py-3.5 font-semibold underline;
   }
 
+  .hand {
+    @apply font-hand;
+  }
   .section-title {
-    @apply font-display text-5xl font-extrabold leading-none sm:text-6xl;
+    @apply font-hand text-6xl leading-none font-bold text-bic sm:text-7xl;
   }
 }
 
@@ -75,7 +91,6 @@
   *::before,
   *::after {
     animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
 }
