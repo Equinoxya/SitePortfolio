@@ -2,6 +2,7 @@
 import { Picture } from "astro:assets";
 import { img } from "../lib/images";
 import pricing from "../data/pricing.json";
+import SectionTitle from "./SectionTitle.astro";
 import { tr, useTranslations, type Lang } from "../i18n/ui";
 
 interface Props {
@@ -14,13 +15,13 @@ const tilt = ["-rotate-2", "rotate-2", "-rotate-1"];
 ---
 
 <section id="pricing" class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-  <h2 class="section-title">{t("pricing.title")}</h2>
+  <SectionTitle>{t("pricing.title")}</SectionTitle>
   <p class="mt-4 max-w-xl text-lg">{t("pricing.intro")}</p>
 
   <ul class="mt-14 grid gap-14 sm:grid-cols-3 sm:gap-8">
     {
       pricing.map((plan, i) => (
-        <li class="flex flex-col items-center text-center">
+        <li class="flex flex-col items-center text-center" data-reveal style={`--d:${i * 120}ms`}>
           <figure class:list={["pinned m-0 w-3/5 sm:w-4/5", tilt[i % tilt.length], i % 2 && "tape-blue"]}>
             <Picture
               src={img(plan.example)}
@@ -34,7 +35,12 @@ const tilt = ["-rotate-2", "rotate-2", "-rotate-1"];
             />
           </figure>
           <h3 class="mt-6 text-xl font-semibold">{tr(plan.name, lang)}</h3>
-          <p class="hand -rotate-2 text-5xl leading-tight font-bold text-crayon">{tr(plan.price, lang)}</p>
+          <p class="hand relative -rotate-2 px-5 py-1 text-5xl leading-tight font-bold text-crayon">
+            {tr(plan.price, lang)}
+            <svg class="draw absolute inset-0 h-full w-full text-bic" viewBox="0 0 120 60" preserveAspectRatio="none" fill="none" aria-hidden="true">
+              <path d="M62 6C30 3 6 13 5 30s26 26 58 25 54-10 52-27S88 3 55 5c-6 0-11 2-14 3" pathLength="1" stroke="currentColor" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke"></path>
+            </svg>
+          </p>
           <p class="mt-1 max-w-[26ch]">{tr(plan.detail, lang)}</p>
         </li>
       ))

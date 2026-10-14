@@ -39,6 +39,7 @@ src/
 ├── i18n/ui.ts       # Textes de l'interface en anglais et en français
 ├── pages/           # index.astro (anglais), fr/index.astro (français)
 └── styles/          # global.css (couleurs, polices, style « scotché »)
+public/              # Icône d'onglet (favicon.svg, .ico) et icône iPhone
 _ancien-site/        # Ancienne version HTML/CSS, gardée pour référence
 ```
 

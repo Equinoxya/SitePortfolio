@@ -34,15 +34,27 @@ const spots = [
       <a href="#pricing" class="btn">{t("hero.cta")}</a>
       <a href="#gallery" class="btn-ghost">{t("hero.gallery")}</a>
     </div>
-    <ul class="hand mt-6 -rotate-2 text-3xl leading-tight text-crayon" aria-label={t("hero.prices")}>
+    <ul class="hand mt-6 -rotate-2 text-3xl leading-tight text-crayon" aria-label={t("hero.prices")} data-reveal style="--d:700ms">
       {pricing.map((p) => <li>{tr(p.name, lang)}{sep}{tr(p.price, lang)}</li>)}
     </ul>
+
+    <!-- Annotation à la main, sur grand écran -->
+    <div class="mt-8 hidden items-center gap-2 self-end md:flex" aria-hidden="true" data-reveal style="--d:950ms">
+      <span class="hand -rotate-3 text-3xl whitespace-nowrap text-bic">{t("hero.note")}</span>
+      <svg class="draw h-12 w-20 text-bic" viewBox="0 0 80 48" fill="none">
+        <path d="M4 40C24 44 52 38 70 14" pathLength="1" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></path>
+        <path d="M58 15l12-2 1 12" pathLength="1" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </div>
   </div>
 
   <div class="relative grid grid-cols-2 gap-x-5 gap-y-8 md:block md:min-h-[640px]" aria-label={t("hero.latest")}>
     {
       latest.map((w, i) => (
-        <figure class:list={["pinned m-0 md:absolute", spots[i].box, spots[i].tape]}>
+        <figure
+          class:list={["pinned stick m-0 transition-[rotate,scale] duration-200 hover:z-20 hover:scale-[1.03] hover:rotate-0 md:absolute", spots[i].box, spots[i].tape]}
+          style={`--d:${150 + i * 140}ms`}
+        >
           <Picture
             src={img(w.image)}
             alt={tr(w.alt, lang)}
@@ -59,5 +71,6 @@ const spots = [
         </figure>
       ))
     }
+
   </div>
 </section>

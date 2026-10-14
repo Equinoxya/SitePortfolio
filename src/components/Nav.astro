@@ -17,7 +17,8 @@ const links = [
 ];
 ---
 
-<header class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 py-6 sm:px-6">
+<header id="site-header" class="relative top-0 z-40 md:sticky border-b-2 border-dashed border-transparent bg-paper/90 backdrop-blur-sm transition-[border-color,box-shadow] duration-300 data-[scrolled]:border-grid data-[scrolled]:shadow-[0_6px_14px_-12px_rgb(35_40_58/0.5)]">
+<div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 py-4 sm:px-6">
   <a href="#top" class="hand text-4xl font-bold text-bic no-underline">Equipouet</a>
   <div class="flex items-center gap-5 sm:gap-8">
     <nav aria-label={t("nav.label")}>
@@ -35,4 +36,12 @@ const links = [
       {other.toUpperCase()}
     </a>
   </div>
+</div>
 </header>
+
+<script>
+  const header = document.getElementById("site-header")!;
+  const onScroll = () => header.toggleAttribute("data-scrolled", window.scrollY > 8);
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+</script>

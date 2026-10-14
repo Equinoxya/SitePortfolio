@@ -14,7 +14,7 @@ const t = useTranslations(lang);
 const title = t("meta.title");
 const description = t("meta.description");
 
-const favicon = await getImage({ src: img("pp.webp"), width: 64, height: 64, format: "png" });
+const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
 const ogImage = await getImage({ src: img("pp.webp"), width: 600, format: "webp" });
 const ogUrl = new URL(ogImage.src, Astro.site);
 const canonical = getAbsoluteLocaleUrl(lang);
@@ -26,13 +26,16 @@ const locales = Object.keys(languages) as Lang[];
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline>document.documentElement.classList.add("js");</script>
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content="Equipouet" />
     <link rel="canonical" href={canonical} />
     {locales.map((l) => <link rel="alternate" hreflang={l} href={getAbsoluteLocaleUrl(l)} />)}
     <link rel="alternate" hreflang="x-default" href={getAbsoluteLocaleUrl("en")} />
-    <link rel="icon" type="image/png" href={favicon.src} />
+    <link rel="icon" href={`${base}favicon.ico`} sizes="48x48" />
+    <link rel="icon" href={`${base}favicon.svg`} type="image/svg+xml" />
+    <link rel="apple-touch-icon" href={`${base}apple-touch-icon.png`} />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />

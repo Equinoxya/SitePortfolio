@@ -2,6 +2,7 @@
 import { Picture, getImage } from "astro:assets";
 import { img } from "../lib/images";
 import works from "../data/portfolio.json";
+import SectionTitle from "./SectionTitle.astro";
 import { tr, useTranslations, type Lang } from "../i18n/ui";
 
 interface Props {
@@ -26,7 +27,7 @@ const items = await Promise.all(
 
 <section id="gallery" class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
   <div class="flex flex-wrap items-end justify-between gap-4">
-    <h2 class="section-title">{t("gallery.title")}</h2>
+    <SectionTitle>{t("gallery.title")}</SectionTitle>
     {
       categories.length > 1 && (
         <div class="flex flex-wrap gap-1" role="group" aria-label={t("gallery.filter")}>
@@ -42,7 +43,7 @@ const items = await Promise.all(
   <ul class="mt-12 grid grid-cols-2 gap-x-5 gap-y-10 md:grid-cols-3 lg:grid-cols-4">
     {
       items.map((w, i) => (
-        <li class="work" data-category={w.category}>
+        <li class="work" data-category={w.category} data-reveal style={`--d:${(i % 4) * 70}ms`}>
           <button
             type="button"
             class:list={["pinned w-full cursor-zoom-in text-left", i % 2 && "tape-blue"]}
@@ -67,11 +68,26 @@ const items = await Promise.all(
     }
   </ul>
 
-  <dialog id="lightbox" class="m-auto max-h-[92vh] w-[min(92vw,560px)] overflow-visible bg-transparent p-0 backdrop:bg-ink/75">
+  <dialog
+    id="lightbox"
+    class="m-auto max-h-[94vh] w-[min(92vw,560px)] overflow-visible bg-transparent p-0 backdrop:bg-ink/80 backdrop:backdrop-blur-[2px]"
+    aria-label={t("gallery.title")}
+  >
     <figure class="pinned m-0">
-      <img src="" alt="" width="712" height="950" class="h-auto max-h-[76vh] w-full object-contain" />
-      <figcaption class="hand mt-2 text-center text-3xl text-bic"></figcaption>
+      <img src="" alt="" width="712" height="950" class="h-auto max-h-[72vh] w-full object-contain" />
+      <figcaption class="mt-2 flex items-baseline justify-between gap-3">
+        <span class="hand text-3xl leading-tight text-bic" data-caption></span>
+        <span class="hand shrink-0 text-2xl text-crayon" data-counter></span>
+      </figcaption>
     </figure>
+
+    <button type="button" class="nav-btn left-0 -translate-x-1/2 sm:-translate-x-[130%]" data-step="-1" aria-label={t("gallery.prev")}>
+      <svg viewBox="0 0 24 24" class="size-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg>
+    </button>
+    <button type="button" class="nav-btn right-0 translate-x-1/2 sm:translate-x-[130%]" data-step="1" aria-label={t("gallery.next")}>
+      <svg viewBox="0 0 24 24" class="size-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg>
+    </button>
+
     <form method="dialog">
       <button class="btn absolute -top-5 -right-3 px-4 py-2 text-sm">{t("gallery.close")}</button>
     </form>
@@ -82,17 +98,22 @@ const items = await Promise.all(
   @reference "../styles/global.css";
 
   .chip {
-    @apply rounded-md px-3 py-1.5 font-semibold text-ink transition-colors hover:text-crayon;
+    @apply min-h-11 cursor-pointer rounded-md px-3 py-1.5 font-semibold text-ink transition-colors hover:text-crayon;
   }
   .chip[aria-pressed="true"] {
     @apply text-bic underline decoration-crayon decoration-wavy decoration-2 underline-offset-[6px];
+  }
+
+  .nav-btn {
+    @apply absolute top-1/2 grid size-12 -translate-y-1/2 cursor-pointer place-items-center rounded-full bg-white text-bic shadow-[0_2px_6px_rgb(35_40_58/0.3)] transition-colors hover:bg-bic hover:text-white;
   }
 
   /* Légères rotations, comme des dessins scotchés à la main */
   .work .pinned {
     transition:
       rotate 0.2s ease,
-      scale 0.2s ease;
+      scale 0.2s ease,
+      box-shadow 0.2s ease;
   }
   .work:nth-child(4n + 1) .pinned { rotate: -2deg; }
   .work:nth-child(4n + 2) .pinned { rotate: 1.5deg; }
@@ -101,11 +122,25 @@ const items = await Promise.all(
   .work .pinned:hover,
   .work .pinned:focus-visible {
     rotate: 0deg;
-    scale: 1.03;
+    scale: 1.04;
+    box-shadow: 0 10px 22px -8px rgb(35 40 58 / 0.35);
+  }
+
+  /* La visionneuse s'ouvre en se posant sur la table */
+  #lightbox[open] figure {
+    animation: drop-in 0.3s cubic-bezier(0.2, 1.2, 0.4, 1);
+  }
+  @keyframes drop-in {
+    from {
+      opacity: 0;
+      scale: 0.94;
+      rotate: -2deg;
+    }
   }
 </style>
 
 <script>
+  // Filtres
   const chips = document.querySelectorAll<HTMLButtonElement>("[data-filter]");
   const works = document.querySelectorAll<HTMLElement>(".work");
   chips.forEach((chip) =>
@@ -116,18 +151,48 @@ const items = await Promise.all(
     }),
   );
 
+  // Visionneuse : précédent / suivant, flèches du clavier, glisser sur mobile
   const dialog = document.getElementById("lightbox") as HTMLDialogElement;
   const bigImg = dialog.querySelector("img")!;
-  const caption = dialog.querySelector("figcaption")!;
-  document.querySelectorAll<HTMLButtonElement>("[data-full]").forEach((btn) =>
+  const caption = dialog.querySelector<HTMLElement>("[data-caption]")!;
+  const counter = dialog.querySelector<HTMLElement>("[data-counter]")!;
+  const all = [...document.querySelectorAll<HTMLButtonElement>(".work [data-full]")];
+  const visible = () => all.filter((b) => !b.closest<HTMLElement>(".work")!.hidden);
+  let current = 0;
+
+  function show(index: number) {
+    const list = visible();
+    current = (index + list.length) % list.length;
+    const btn = list[current];
+    bigImg.src = btn.dataset.full!;
+    bigImg.alt = btn.dataset.alt!;
+    caption.textContent = btn.dataset.title!;
+    counter.textContent = `${current + 1} / ${list.length}`;
+  }
+
+  all.forEach((btn) =>
     btn.addEventListener("click", () => {
-      bigImg.src = btn.dataset.full!;
-      bigImg.alt = btn.dataset.alt!;
-      caption.textContent = btn.dataset.title!;
+      show(visible().indexOf(btn));
       dialog.showModal();
     }),
   );
+  dialog.querySelectorAll<HTMLButtonElement>("[data-step]").forEach((b) =>
+    b.addEventListener("click", () => show(current + Number(b.dataset.step))),
+  );
+  dialog.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") show(current - 1);
+    if (e.key === "ArrowRight") show(current + 1);
+  });
   dialog.addEventListener("click", (e) => {
     if (e.target === dialog) dialog.close();
+  });
+  // Au retour, le focus revient sur le dessin affiché
+  dialog.addEventListener("close", () => visible()[current]?.focus());
+
+  let startX = 0;
+  dialog.addEventListener("touchstart", (e) => (startX = e.touches[0].clientX), { passive: true });
+  dialog.addEventListener("touchend", (e) => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 50) show(current + (dx < 0 ? 1 : -1));
   });
 </script>

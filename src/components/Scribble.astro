@@ -1,0 +1,16 @@
+---
+// Trait ondulé dessiné à la main, sous les titres de section
+interface Props {
+  class?: string;
+}
+const { class: className = "" } = Astro.props;
+---
+
+<svg class:list={["scribble", className]} viewBox="0 0 220 14" width="180" height="12" fill="none" aria-hidden="true">
+  <path
+    d="M3 9C25 2 40 13 62 7s38-5 60 1 43 5 66-2 22-1 29 1"
+    pathLength="1"
+    stroke="currentColor"
+    stroke-width="3"
+    stroke-linecap="round"></path>
+</svg>

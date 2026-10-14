@@ -24,7 +24,23 @@ const t = useTranslations(lang);
     <Pricing lang={lang} />
     <Contact lang={lang} />
   </main>
-  <footer class="hand px-4 pb-10 text-center text-xl text-bic">
-    © {new Date().getFullYear()} Equipouet. {t("footer.rights")}
+  <footer class="hand flex flex-col items-center gap-1 px-4 pb-10 text-center text-xl text-bic">
+    <span class="text-2xl">{t("footer.made")}</span>
+    <span class="text-ink/70">© {new Date().getFullYear()} Equipouet. {t("footer.rights")}</span>
   </footer>
 </Base>
+
+<script>
+  // Fait apparaître les éléments [data-reveal] quand ils entrent à l'écran
+  const io = new IntersectionObserver(
+    (entries) =>
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("is-in");
+          io.unobserve(e.target);
+        }
+      }),
+    { rootMargin: "0px 0px -8% 0px" },
+  );
+  document.querySelectorAll("[data-reveal]").forEach((el) => io.observe(el));
+</script>
