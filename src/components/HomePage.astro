@@ -6,6 +6,7 @@ import Gallery from "./Gallery.astro";
 import About from "./About.astro";
 import Pricing from "./Pricing.astro";
 import Contact from "./Contact.astro";
+import settings from "../data/settings.json";
 import { useTranslations, type Lang } from "../i18n/ui";
 
 interface Props {
@@ -16,6 +17,13 @@ const t = useTranslations(lang);
 ---
 
 <Base lang={lang}>
+  {
+    !settings.commissionsOpen && (
+      <p role="status" class="hand m-0 bg-crayon px-4 py-1.5 text-center text-2xl leading-tight font-bold text-white">
+        {t("banner.closed")}
+      </p>
+    )
+  }
   <Nav lang={lang} />
   <main>
     <Hero lang={lang} />

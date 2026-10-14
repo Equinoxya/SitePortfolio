@@ -76,6 +76,8 @@ Les couleurs et polices sont définies une seule fois dans `src/styles/global.cs
 - Dans les JSON, un texte peut être identique dans les deux langues (`"title": "Tavara"`) ou traduit (`"title": { "en": "…", "fr": "…" }`).
 - Ajouter une langue : l'ajouter dans `languages` et `ui` (`src/i18n/ui.ts`), dans `locales` (`astro.config.mjs`), puis créer `src/pages/<langue>/index.astro`.
 
+**Ouvrir / fermer les commissions** : `src/data/settings.json` → `"commissionsOpen": false` affiche le bandeau « Commissions fermées pour l'instant » en haut du site, `true` le retire.
+
 **Changer les tarifs** : `src/data/pricing.json` (`example` = nom d'une image de `src/assets/images/`).
 
 **Changer la bio, l'email ou les réseaux** : `src/data/presentation.json`.

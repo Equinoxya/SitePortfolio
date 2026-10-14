@@ -14,6 +14,7 @@ export const ui = {
   en: {
     "meta.title": "Equipouet, illustrator & web developer",
     "meta.description": "Portfolio of Equipouet, illustrator and web developer. Illustrations, fan art and commissions.",
+    "banner.closed": "Commissions are closed for now",
     "nav.label": "Main",
     "nav.gallery": "Gallery",
     "nav.about": "About",
@@ -51,6 +52,7 @@ export const ui = {
   fr: {
     "meta.title": "Equipouet, illustratrice et développeuse web",
     "meta.description": "Portfolio d'Equipouet, illustratrice et développeuse web. Illustrations, fan art et commissions.",
+    "banner.closed": "Commissions fermées pour l'instant",
     "nav.label": "Menu principal",
     "nav.gallery": "Galerie",
     "nav.about": "À propos",
