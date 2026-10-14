@@ -1,0 +1,81 @@
+@import "tailwindcss";
+@import "@fontsource-variable/gluten";
+@import "@fontsource-variable/figtree";
+
+@theme {
+  --color-lilas: #efe6ff;
+  --color-lilas-deep: #dccbfb;
+  --color-aubergine: #2b1745;
+  --color-mousse: #8fcb3e;
+  --color-rousse: #ff6b3d;
+  --color-souci: #ffc93c;
+
+  --font-display: "Gluten Variable", cursive;
+  --font-sans: "Figtree Variable", system-ui, sans-serif;
+
+  --shadow-sticker: 5px 6px 0 var(--color-aubergine);
+  --shadow-sticker-lg: 8px 10px 0 var(--color-aubergine);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+  body {
+    @apply bg-lilas text-aubergine font-sans antialiased;
+    /* petits pois discrets, façon papier de carnet */
+    background-image: radial-gradient(
+      color-mix(in oklab, var(--color-aubergine) 9%, transparent) 1.2px,
+      transparent 1.4px
+    );
+    background-size: 22px 22px;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-rousse);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  ::selection {
+    background: var(--color-souci);
+    color: var(--color-aubergine);
+  }
+}
+
+@layer components {
+  /* Le sticker : bord blanc épais + ombre dure */
+  .sticker {
+    @apply block overflow-hidden rounded-[18px] border-[7px] border-white bg-white;
+    box-shadow: var(--shadow-sticker);
+  }
+
+  .btn {
+    @apply inline-flex items-center gap-2 rounded-full border-[3px] border-aubergine px-6 py-3 font-display text-lg font-bold leading-none transition-transform duration-150;
+    box-shadow: 3px 4px 0 var(--color-aubergine);
+  }
+  .btn:hover {
+    transform: translate(-1px, -2px);
+    box-shadow: 4px 6px 0 var(--color-aubergine);
+  }
+  .btn:active {
+    transform: translate(2px, 3px);
+    box-shadow: 0 0 0 var(--color-aubergine);
+  }
+
+  .section-title {
+    @apply font-display text-5xl font-extrabold leading-none sm:text-6xl;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

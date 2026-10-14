@@ -1,0 +1,29 @@
+---
+import { Picture } from "astro:assets";
+import { img } from "../lib/images";
+import me from "../data/presentation.json";
+---
+
+<section id="about" class="mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 md:grid-cols-[minmax(0,320px)_1fr]">
+  <div class="mx-auto w-3/4 max-w-[320px] -rotate-3 md:w-full">
+    <div class="sticker">
+      <Picture
+        src={img(me.photo)}
+        alt={me.photoAlt}
+        formats={["avif", "webp"]}
+        fallbackFormat="webp"
+        quality={70}
+        widths={[240, 320, 455]}
+        sizes="(min-width: 768px) 320px, 75vw"
+        class="aspect-[4/5] h-auto w-full rounded-[11px] object-cover"
+      />
+    </div>
+  </div>
+
+  <div>
+    <h2 class="section-title">Hi, I'm Equi</h2>
+    <div class="mt-6 max-w-[62ch] space-y-4 text-lg leading-relaxed">
+      {me.description.map((p) => <p>{p}</p>)}
+    </div>
+  </div>
+</section>

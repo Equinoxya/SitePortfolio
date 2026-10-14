@@ -1,0 +1,44 @@
+---
+import "../styles/global.css";
+import { getImage } from "astro:assets";
+import { img } from "../lib/images";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Equipouet, illustrator & web developer",
+  description = "Portfolio d'Equipouet, illustratrice et développeuse web. Illustrations, fan art et commissions.",
+} = Astro.props;
+
+const favicon = await getImage({ src: img("pp.webp"), width: 64, height: 64, format: "png" });
+const ogImage = await getImage({ src: img("pp.webp"), width: 600, format: "webp" });
+const ogUrl = new URL(ogImage.src, Astro.site);
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Equipouet" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/png" href={favicon.src} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogUrl} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:creator" content="@equipouet" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

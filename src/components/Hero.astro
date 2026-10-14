@@ -1,0 +1,95 @@
+---
+import { Picture } from "astro:assets";
+import { img } from "../lib/images";
+import works from "../data/portfolio.json";
+import me from "../data/presentation.json";
+import pricing from "../data/pricing.json";
+
+// Les 3 dernières illustrations (index le plus haut)
+const latest = [...works].sort((a, b) => b.index - a.index).slice(0, 3);
+const cheapest = pricing.find((p) => /\d/.test(p.price))?.price;
+
+// Position de chaque sticker dans la pile
+const pile = [
+  "left-[2%] top-[8%] -rotate-[9deg] w-[46%]",
+  "left-[30%] top-0 rotate-[3deg] w-[46%] z-10",
+  "right-[2%] top-[14%] rotate-[11deg] w-[42%]",
+];
+---
+
+<section id="top" class="mx-auto grid max-w-6xl items-center gap-10 px-4 pt-12 pb-20 md:grid-cols-2 md:pt-20">
+  <div class="order-2 md:order-1">
+    <h1
+      class="font-display text-[clamp(3.25rem,15vw,4.75rem)] md:text-[clamp(3.5rem,6vw,5.25rem)] leading-[0.85] font-black tracking-tight [text-shadow:5px_5px_0_var(--color-souci)]"
+    >
+      {me.pseudo}
+    </h1>
+    <p class="mt-5 font-display text-2xl font-semibold sm:text-3xl">{me.role}</p>
+    <p class="mt-4 max-w-md text-lg leading-relaxed">
+      I draw characters: fan art, original characters and commissions.{cheapest && ` Portraits start at ${cheapest}.`}
+    </p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="#gallery" class="btn bg-souci">See the gallery</a>
+      <a href="#pricing" class="btn bg-white">Commission me</a>
+    </div>
+  </div>
+
+  <div class="relative order-1 aspect-[5/4] md:order-2" aria-label="Latest illustrations">
+    {
+      latest.map((w, i) => (
+        <a
+          href="#gallery"
+          class:list={["sticker drop absolute", pile[i]]}
+          style={`--delay:${i * 120}ms`}
+          tabindex="-1"
+        >
+          <Picture
+            src={img(w.image)}
+            alt={w.alt}
+            formats={["avif", "webp"]}
+            fallbackFormat="webp"
+            quality={70}
+            widths={[240, 360, 480]}
+            sizes="(min-width: 768px) 25vw, 45vw"
+            loading="eager"
+            fetchpriority={i === 1 ? "high" : "auto"}
+            class="aspect-[3/4] h-auto w-full object-cover"
+          />
+        </a>
+      ))
+    }
+
+    <div class="drop absolute -bottom-6 left-0 z-20 w-[30%] -rotate-6" style="--delay:420ms">
+      <Picture
+        src={img(me.avatar)}
+        alt={me.avatarAlt}
+        formats={["avif", "webp"]}
+        fallbackFormat="webp"
+        quality={70}
+        widths={[160, 320]}
+        sizes="(min-width: 768px) 14vw, 30vw"
+        loading="eager"
+        class="aspect-square h-auto w-full rounded-full border-[6px] border-white object-cover shadow-[5px_6px_0_var(--color-aubergine)]"
+      />
+      <span
+        class="absolute -top-3 -right-4 rotate-6 rounded-2xl border-[3px] border-aubergine bg-mousse px-3 py-1 font-display text-xl font-bold"
+        aria-hidden="true">Hi!</span
+      >
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Le seul moment animé de la page : la pile de stickers qui tombe */
+  .drop {
+    animation: drop 0.55s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+    animation-delay: var(--delay);
+  }
+  @keyframes drop {
+    from {
+      opacity: 0;
+      translate: 0 -40px;
+      scale: 1.15;
+    }
+  }
+</style>

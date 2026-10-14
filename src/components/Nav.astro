@@ -1,0 +1,41 @@
+---
+import { Image } from "astro:assets";
+import { img } from "../lib/images";
+
+const links = [
+  { href: "#gallery", label: "Gallery" },
+  { href: "#about", label: "About" },
+  { href: "#pricing", label: "Pricing" },
+  { href: "#contact", label: "Contact" },
+];
+---
+
+<header class="sticky top-3 z-40 px-4">
+  <nav
+    class="mx-auto flex max-w-6xl items-center justify-between gap-3 rounded-full border-[3px] border-aubergine bg-white py-1.5 pr-2 pl-1.5 shadow-[3px_4px_0_var(--color-aubergine)]"
+    aria-label="Main"
+  >
+    <a href="#top" class="flex items-center gap-2 rounded-full pr-2">
+      <Image
+        src={img("pp.webp")}
+        alt=""
+        width={44}
+        height={44}
+        densities={[1, 2]}
+        class="size-11 rounded-full border-2 border-aubergine object-cover"
+      />
+      <span class="hidden font-display text-xl font-bold sm:inline">Equipouet</span>
+    </a>
+    <ul class="flex items-center gap-0.5 text-sm font-semibold sm:gap-1 sm:text-base">
+      {
+        links.map((l) => (
+          <li>
+            <a href={l.href} class="block rounded-full px-2.5 py-2 transition-colors hover:bg-souci sm:px-4">
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>

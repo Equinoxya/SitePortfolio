@@ -1,47 +1,44 @@
 # SitePortfolio
 
-Site web portfolio personnel, construit en HTML/CSS/JavaScript.
+Portfolio d'Equipouet, illustratrice et développeuse web. Construit avec **Astro** et **Tailwind CSS**.
 
-## 🎨 Aperçu
+## Lancer le projet
 
-Ce projet est le site portfolio de présentation, permettant de mettre en avant des projets, compétences et informations de contact via une interface web statique.
-
-## 🗂️ Structure du projet
-
-```
-SitePortfolio/
-├── Data/           # Données du site (contenus, JSON, etc.)
-├── Images/         # Ressources visuelles (photos, icônes, illustrations)
-├── Scripts/        # Scripts JavaScript
-├── index.html      # Page principale du site
-├── styles.css      # Feuille de style principale
-└── LICENSE.txt      # Licence d'utilisation
+```bash
+npm install
+npm run dev      # http://localhost:4321/SitePortfolio/
+npm run build    # génère dist/
+npm run preview  # teste le build
 ```
 
-- **`Data/`** — Contient les données utilisées pour générer dynamiquement certains contenus du site (textes, informations de projets, etc.).
-- **`Images/`** — Ensemble des visuels utilisés sur le site.
-- **`Scripts/`** — Logique JavaScript du site (interactions, chargement dynamique des données, animations, etc.).
-- **`index.html`** — Point d'entrée du site.
-- **`styles.css`** — Mise en forme et design du site.
+## Structure
 
-## 🛠️ Stack technique
+```
+src/
+├── assets/images/   # Illustrations (optimisées au build : AVIF + WebP, tailles responsive)
+├── data/            # Contenu du site, à modifier ici
+│   ├── portfolio.json      # Galerie
+│   ├── presentation.json   # Bio, email, réseaux
+│   └── pricing.json        # Tarifs
+├── components/      # Nav, Hero, Gallery, About, Pricing, Contact
+├── layouts/         # Base.astro (<head>, SEO)
+├── pages/           # index.astro
+└── styles/          # global.css (couleurs, polices, style « sticker »)
+```
 
-| Composant  | Technologie |
-|------------|-------------|
-| Structure  | HTML5 |
-| Style      | CSS3 |
-| Interactivité | JavaScript |
-| Données    | JSON (dossier `Data/`) |
+## Ajouter une illustration
 
-## 📄 Licence
+1. Mettre l'image dans `src/assets/images/` (WebP ou PNG, en haute qualité : Astro compresse lui-même).
+2. Ajouter une entrée dans `src/data/portfolio.json` avec un `index` plus grand que les autres.
+   Les 3 index les plus hauts apparaissent dans la pile du haut de page.
 
-Ce projet est distribué sous une licence d'utilisation personnalisée (voir [`LICENSE.txt`](./LICENSE.txt)). En résumé :
+## Déploiement
 
-- ✅ Autorisé : utilisation du site pour un usage personnel ou professionnel, modification des contenus visibles (textes, images, données), mise en ligne sur son propre hébergement.
-- ❌ Interdit : revente ou redistribution du pack, modification du code source en dehors des zones prévues, suppression des mentions de copyright, création de produits dérivés destinés à la vente.
+Un push sur `main` déploie sur GitHub Pages (`.github/workflows/deploy.yml`).
+Dans le repo GitHub : Settings → Pages → Source : **GitHub Actions**.
 
-Pour toute personnalisation avancée ou question, voir les coordonnées indiquées dans le fichier de licence.
+Pour Netlify ou un domaine perso, changer `site` et `base` dans `astro.config.mjs`.
 
-## ✍️ Auteur
+## Auteur
 
 [Equinoxya](https://github.com/Equinoxya)

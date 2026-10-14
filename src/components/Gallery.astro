@@ -1,0 +1,132 @@
+---
+import { Picture, getImage } from "astro:assets";
+import { img } from "../lib/images";
+import works from "../data/portfolio.json";
+
+const sorted = [...works].sort((a, b) => b.index - a.index);
+const categories = [...new Set(sorted.map((w) => w.category))];
+
+// Version grand format pour la visionneuse
+const items = await Promise.all(
+  sorted.map(async (w) => ({
+    ...w,
+    full: (await getImage({ src: img(w.image), width: 712, format: "webp" })).src,
+  })),
+);
+---
+
+<section id="gallery" class="mx-auto max-w-6xl px-4 py-20">
+  <div class="flex flex-wrap items-end justify-between gap-4">
+    <h2 class="section-title">Gallery</h2>
+    {
+      categories.length > 1 && (
+        <div class="flex flex-wrap gap-2" role="group" aria-label="Filter by category">
+          <button type="button" class="chip" data-filter="all" aria-pressed="true">All</button>
+          {categories.map((c) => (
+            <button type="button" class="chip" data-filter={c} aria-pressed="false">{c}</button>
+          ))}
+        </div>
+      )
+    }
+  </div>
+
+  <ul class="mt-10 grid grid-cols-2 gap-x-5 gap-y-8 md:grid-cols-3 lg:grid-cols-4">
+    {
+      items.map((w) => (
+        <li class="work" data-category={w.category}>
+          <button
+            type="button"
+            class="sticker w-full cursor-zoom-in text-left"
+            data-full={w.full}
+            data-alt={w.alt}
+            data-title={w.title}
+          >
+            <Picture
+              src={img(w.image)}
+              alt={w.alt}
+              formats={["avif", "webp"]}
+            fallbackFormat="webp"
+            quality={70}
+              widths={[240, 360, 540]}
+              sizes="(min-width: 1024px) 270px, (min-width: 768px) 30vw, 45vw"
+              class="aspect-[3/4] h-auto w-full rounded-[11px] object-cover"
+            />
+            <span class="block px-1 pt-2 pb-0.5 font-display text-base leading-tight font-semibold sm:text-lg">
+              {w.title}
+            </span>
+          </button>
+        </li>
+      ))
+    }
+  </ul>
+
+  <dialog id="lightbox" class="m-auto max-h-[92vh] w-[min(92vw,560px)] overflow-visible bg-transparent p-0 backdrop:bg-aubergine/80">
+    <figure class="sticker relative rotate-0 bg-white">
+      <img src="" alt="" width="712" height="950" class="h-auto max-h-[78vh] w-full rounded-[11px] object-contain" />
+      <figcaption class="px-1 pt-2 font-display text-xl font-semibold"></figcaption>
+    </figure>
+    <form method="dialog">
+      <button
+        class="btn absolute -top-4 -right-3 bg-souci px-4 py-2 text-base"
+        aria-label="Close">Close</button
+      >
+    </form>
+  </dialog>
+</section>
+
+<style>
+  @reference "../styles/global.css";
+
+  .chip {
+    @apply rounded-full border-[3px] border-aubergine bg-white px-4 py-1.5 font-semibold transition-colors;
+  }
+  .chip[aria-pressed="true"] {
+    @apply bg-aubergine text-white;
+  }
+
+  /* Rotations variées, comme des stickers collés à la main */
+  .work .sticker {
+    transition:
+      rotate 0.2s ease,
+      scale 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+  .work:nth-child(4n + 1) .sticker { rotate: -2deg; }
+  .work:nth-child(4n + 2) .sticker { rotate: 1.5deg; }
+  .work:nth-child(4n + 3) .sticker { rotate: -1deg; }
+  .work:nth-child(4n + 4) .sticker { rotate: 2.5deg; }
+  .work .sticker:hover,
+  .work .sticker:focus-visible {
+    rotate: 0deg;
+    scale: 1.03;
+    box-shadow: var(--shadow-sticker-lg);
+  }
+</style>
+
+<script>
+  const chips = document.querySelectorAll<HTMLButtonElement>("[data-filter]");
+  const works = document.querySelectorAll<HTMLElement>(".work");
+  chips.forEach((chip) =>
+    chip.addEventListener("click", () => {
+      const f = chip.dataset.filter;
+      chips.forEach((c) => c.setAttribute("aria-pressed", String(c === chip)));
+      works.forEach((w) => (w.hidden = f !== "all" && w.dataset.category !== f));
+    }),
+  );
+
+  const dialog = document.getElementById("lightbox") as HTMLDialogElement;
+  const bigImg = dialog.querySelector("img")!;
+  const caption = dialog.querySelector("figcaption")!;
+  document.querySelectorAll<HTMLButtonElement>("[data-full]").forEach((btn) =>
+    btn.addEventListener("click", () => {
+      bigImg.src = btn.dataset.full!;
+      bigImg.alt = btn.dataset.alt!;
+      caption.textContent = btn.dataset.title!;
+      dialog.showModal();
+    }),
+  );
+  // Fermer en cliquant sur le fond
+  dialog.addEventListener("click", (e) => {
+    if (e.target === dialog) dialog.close();
+  });
+</script>

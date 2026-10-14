@@ -1,0 +1,16 @@
+---
+import { siX, siBluesky, siInstagram, siPatreon } from "simple-icons";
+
+const icons = { x: siX, bluesky: siBluesky, instagram: siInstagram, patreon: siPatreon };
+
+interface Props {
+  name: keyof typeof icons;
+  class?: string;
+}
+const { name, class: className = "size-6" } = Astro.props;
+const icon = icons[name];
+---
+
+<svg class={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+  <path d={icon.path} />
+</svg>

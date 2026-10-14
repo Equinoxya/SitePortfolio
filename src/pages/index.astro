@@ -1,0 +1,23 @@
+---
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+import Hero from "../components/Hero.astro";
+import Gallery from "../components/Gallery.astro";
+import About from "../components/About.astro";
+import Pricing from "../components/Pricing.astro";
+import Contact from "../components/Contact.astro";
+---
+
+<Base>
+  <Nav />
+  <main>
+    <Hero />
+    <Gallery />
+    <About />
+    <Pricing />
+    <Contact />
+  </main>
+  <footer class="px-4 pb-10 text-center text-sm font-semibold">
+    © {new Date().getFullYear()} Equipouet. All rights reserved.
+  </footer>
+</Base>
