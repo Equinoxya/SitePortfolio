@@ -1,16 +1,21 @@
 {
-  "avatar": "pp.webp",
-  "avatarAlt": "Personnage qui salue de la main",
   "photo": "ppmoi.webp",
-  "photoAlt": "Photo de profil",
+  "photoAlt": { "en": "Portrait of Equi", "fr": "Portrait d'Equi" },
   "pseudo": "Equipouet",
-  "role": "Illustrator & web developer",
-  "description": [
-    "I am Equi, a developer and illustrator. I help companies and creators design reliable, polished, and visually distinctive digital experiences.",
-    "As a developer, I design functional and intuitive interfaces, with a particular focus on performance, code clarity, and user experience. My approach is pragmatic: understand needs, propose solid solutions, and deliver a clean, maintainable, and effective result.",
-    "In illustration, I create visuals tailored to brand identities, creative projects, and narrative worlds. My work combines technical precision, attention to detail, and the ability to produce images that truly support a message or mood.",
-    "I am particularly drawn to projects that require both technical rigor and artistic direction. My goal: to offer comprehensive, consistent, and high-value-added solutions."
-  ],
+  "description": {
+    "en": [
+      "I am Equi, a developer and illustrator. I help companies and creators design reliable, polished, and visually distinctive digital experiences.",
+      "As a developer, I design functional and intuitive interfaces, with a particular focus on performance, code clarity, and user experience. My approach is pragmatic: understand needs, propose solid solutions, and deliver a clean, maintainable, and effective result.",
+      "In illustration, I create visuals tailored to brand identities, creative projects, and narrative worlds. My work combines technical precision, attention to detail, and the ability to produce images that truly support a message or mood.",
+      "I am particularly drawn to projects that require both technical rigor and artistic direction. My goal: to offer comprehensive, consistent, and high-value-added solutions."
+    ],
+    "fr": [
+      "Je suis Equi, développeuse et illustratrice. J'aide les entreprises et les créateurs à concevoir des expériences numériques fiables, soignées et visuellement singulières.",
+      "En tant que développeuse, je conçois des interfaces fonctionnelles et intuitives, avec une attention particulière à la performance, à la clarté du code et à l'expérience utilisateur. Mon approche est pragmatique : comprendre les besoins, proposer des solutions solides et livrer un résultat propre, maintenable et efficace.",
+      "En illustration, je crée des visuels adaptés aux identités de marque, aux projets créatifs et aux univers narratifs. Mon travail allie précision technique, souci du détail et capacité à produire des images qui servent vraiment un message ou une ambiance.",
+      "Je suis particulièrement attirée par les projets qui demandent à la fois rigueur technique et direction artistique. Mon objectif : proposer des solutions complètes, cohérentes et à forte valeur ajoutée."
+    ]
+  },
   "email": "equinoxya.pro@gmail.com",
   "socials": {
     "x": "https://x.com/equipouet",

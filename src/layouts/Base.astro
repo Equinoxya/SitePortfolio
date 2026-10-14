@@ -1,26 +1,28 @@
 ---
 import "../styles/global.css";
 import { getImage } from "astro:assets";
+import { getAbsoluteLocaleUrl } from "astro:i18n";
 import { img } from "../lib/images";
+import { languages, useTranslations, type Lang } from "../i18n/ui";
 
 interface Props {
-  title?: string;
-  description?: string;
+  lang: Lang;
 }
 
-const {
-  title = "Equipouet, illustrator & web developer",
-  description = "Portfolio d'Equipouet, illustratrice et développeuse web. Illustrations, fan art et commissions.",
-} = Astro.props;
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const title = t("meta.title");
+const description = t("meta.description");
 
 const favicon = await getImage({ src: img("pp.webp"), width: 64, height: 64, format: "png" });
 const ogImage = await getImage({ src: img("pp.webp"), width: 600, format: "webp" });
 const ogUrl = new URL(ogImage.src, Astro.site);
-const canonical = new URL(Astro.url.pathname, Astro.site);
+const canonical = getAbsoluteLocaleUrl(lang);
+const locales = Object.keys(languages) as Lang[];
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,6 +30,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="description" content={description} />
     <meta name="author" content="Equipouet" />
     <link rel="canonical" href={canonical} />
+    {locales.map((l) => <link rel="alternate" hreflang={l} href={getAbsoluteLocaleUrl(l)} />)}
+    <link rel="alternate" hreflang="x-default" href={getAbsoluteLocaleUrl("en")} />
     <link rel="icon" type="image/png" href={favicon.src} />
 
     <meta property="og:type" content="website" />
@@ -35,6 +39,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogUrl} />
     <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={lang === "fr" ? "fr_FR" : "en_US"} />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:creator" content="@equipouet" />
   </head>

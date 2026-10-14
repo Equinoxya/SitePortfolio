@@ -1,0 +1,30 @@
+---
+import Base from "../layouts/Base.astro";
+import Nav from "./Nav.astro";
+import Hero from "./Hero.astro";
+import Gallery from "./Gallery.astro";
+import About from "./About.astro";
+import Pricing from "./Pricing.astro";
+import Contact from "./Contact.astro";
+import { useTranslations, type Lang } from "../i18n/ui";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<Base lang={lang}>
+  <Nav lang={lang} />
+  <main>
+    <Hero lang={lang} />
+    <Gallery lang={lang} />
+    <About lang={lang} />
+    <Pricing lang={lang} />
+    <Contact lang={lang} />
+  </main>
+  <footer class="hand px-4 pb-10 text-center text-xl text-bic">
+    © {new Date().getFullYear()} Equipouet. {t("footer.rights")}
+  </footer>
+</Base>

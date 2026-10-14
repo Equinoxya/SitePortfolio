@@ -7,6 +7,12 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   site: "https://equinoxya.github.io",
   base: "/SitePortfolio",
+  // Anglais à la racine, français sous /fr/
+  i18n: {
+    locales: ["en", "fr"],
+    defaultLocale: "en",
+    routing: { prefixDefaultLocale: false },
+  },
   vite: {
     plugins: [tailwindcss()],
   },

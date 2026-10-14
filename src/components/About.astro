@@ -2,13 +2,20 @@
 import { Picture } from "astro:assets";
 import { img } from "../lib/images";
 import me from "../data/presentation.json";
+import { tr, useTranslations, type Lang } from "../i18n/ui";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <section id="about" class="mx-auto grid max-w-6xl items-center gap-14 px-4 py-20 sm:px-6 md:grid-cols-[minmax(0,300px)_1fr]">
   <figure class="pinned tape-blue m-0 mx-auto w-3/4 max-w-[300px] -rotate-3 md:w-full">
     <Picture
       src={img(me.photo)}
-      alt={me.photoAlt}
+      alt={tr(me.photoAlt, lang)}
       formats={["avif", "webp"]}
       fallbackFormat="webp"
       quality={70}
@@ -16,13 +23,13 @@ import me from "../data/presentation.json";
       sizes="(min-width: 768px) 300px, 75vw"
       class="aspect-[3/4] h-auto w-full object-cover"
     />
-    <figcaption class="hand mt-2 text-center text-2xl text-bic">that's me!</figcaption>
+    <figcaption class="hand mt-2 text-center text-2xl text-bic">{t("about.caption")}</figcaption>
   </figure>
 
   <div>
-    <h2 class="section-title">About</h2>
+    <h2 class="section-title">{t("about.title")}</h2>
     <div class="mt-6 max-w-[62ch] space-y-4 text-lg leading-relaxed">
-      {me.description.map((p) => <p>{p}</p>)}
+      {me.description[lang].map((p) => <p>{p}</p>)}
     </div>
   </div>
 </section>

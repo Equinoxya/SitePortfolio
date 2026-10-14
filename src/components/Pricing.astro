@@ -2,13 +2,20 @@
 import { Picture } from "astro:assets";
 import { img } from "../lib/images";
 import pricing from "../data/pricing.json";
+import { tr, useTranslations, type Lang } from "../i18n/ui";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 
 const tilt = ["-rotate-2", "rotate-2", "-rotate-1"];
 ---
 
 <section id="pricing" class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-  <h2 class="section-title">Pricing</h2>
-  <p class="mt-4 max-w-xl text-lg">Commissions in my style. Tell me about your character and we'll go from there.</p>
+  <h2 class="section-title">{t("pricing.title")}</h2>
+  <p class="mt-4 max-w-xl text-lg">{t("pricing.intro")}</p>
 
   <ul class="mt-14 grid gap-14 sm:grid-cols-3 sm:gap-8">
     {
@@ -17,7 +24,7 @@ const tilt = ["-rotate-2", "rotate-2", "-rotate-1"];
           <figure class:list={["pinned m-0 w-3/5 sm:w-4/5", tilt[i % tilt.length], i % 2 && "tape-blue"]}>
             <Picture
               src={img(plan.example)}
-              alt={`Example: ${plan.name.toLowerCase()}`}
+              alt={`${t("pricing.example")}${lang === "fr" ? " : " : ": "}${tr(plan.name, lang).toLowerCase()}`}
               formats={["avif", "webp"]}
               fallbackFormat="webp"
               quality={70}
@@ -26,15 +33,15 @@ const tilt = ["-rotate-2", "rotate-2", "-rotate-1"];
               class="aspect-[3/4] h-auto w-full object-cover"
             />
           </figure>
-          <h3 class="mt-6 text-xl font-semibold">{plan.name}</h3>
-          <p class="hand -rotate-2 text-5xl leading-tight font-bold text-crayon">{plan.price}</p>
-          <p class="mt-1 max-w-[26ch]">{plan.detail}</p>
+          <h3 class="mt-6 text-xl font-semibold">{tr(plan.name, lang)}</h3>
+          <p class="hand -rotate-2 text-5xl leading-tight font-bold text-crayon">{tr(plan.price, lang)}</p>
+          <p class="mt-1 max-w-[26ch]">{tr(plan.detail, lang)}</p>
         </li>
       ))
     }
   </ul>
 
   <div class="mt-14 flex justify-center">
-    <a href="#contact" class="btn">Ask for a commission</a>
+    <a href="#contact" class="btn">{t("pricing.cta")}</a>
   </div>
 </section>

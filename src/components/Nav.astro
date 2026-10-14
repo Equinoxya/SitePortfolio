@@ -1,17 +1,38 @@
 ---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { useTranslations, type Lang } from "../i18n/ui";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const other: Lang = lang === "en" ? "fr" : "en";
+
 const links = [
-  { href: "#gallery", label: "Gallery" },
-  { href: "#about", label: "About" },
-  { href: "#pricing", label: "Pricing" },
-  { href: "#contact", label: "Contact" },
+  { href: "#gallery", label: t("nav.gallery") },
+  { href: "#about", label: t("nav.about") },
+  { href: "#pricing", label: t("nav.pricing") },
+  { href: "#contact", label: t("nav.contact") },
 ];
 ---
 
 <header class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 py-6 sm:px-6">
   <a href="#top" class="hand text-4xl font-bold text-bic no-underline">Equipouet</a>
-  <nav aria-label="Main">
-    <ul class="flex gap-5 text-[15px] font-semibold sm:gap-8">
-      {links.map((l) => <li><a href={l.href} class="text-ink no-underline hover:text-crayon">{l.label}</a></li>)}
-    </ul>
-  </nav>
+  <div class="flex items-center gap-5 sm:gap-8">
+    <nav aria-label={t("nav.label")}>
+      <ul class="flex flex-wrap gap-x-5 gap-y-1 text-[15px] font-semibold sm:gap-8">
+        {links.map((l) => <li><a href={l.href} class="text-ink no-underline hover:text-crayon">{l.label}</a></li>)}
+      </ul>
+    </nav>
+    <a
+      href={getRelativeLocaleUrl(other)}
+      hreflang={other}
+      lang={other}
+      aria-label={t("nav.switch")}
+      class="hand rounded-md border-2 border-bic px-2.5 text-2xl leading-8 font-bold text-bic no-underline hover:border-crayon"
+    >
+      {other.toUpperCase()}
+    </a>
+  </div>
 </header>

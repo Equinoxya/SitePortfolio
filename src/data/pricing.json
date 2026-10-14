@@ -1,5 +1,20 @@
 [
-  { "name": "Portrait", "price": "20€", "detail": "Head and shoulders, one character.", "example": "TavaraRDR.webp" },
-  { "name": "Full body", "price": "40€", "detail": "The whole character, head to toe.", "example": "GortashCorset.webp" },
-  { "name": "Extra character", "price": "On request", "detail": "Add someone to the scene. Ask me for a quote.", "example": "charlyGortash.webp" }
+  {
+    "name": "Portrait",
+    "price": "20€",
+    "detail": { "en": "Head and shoulders, one character.", "fr": "Visage et épaules, un personnage." },
+    "example": "TavaraRDR.webp"
+  },
+  {
+    "name": { "en": "Full body", "fr": "En pied" },
+    "price": "40€",
+    "detail": { "en": "The whole character, head to toe.", "fr": "Le personnage en entier, de la tête aux pieds." },
+    "example": "GortashCorset.webp"
+  },
+  {
+    "name": { "en": "Extra character", "fr": "Personnage en plus" },
+    "price": { "en": "On request", "fr": "Sur devis" },
+    "detail": { "en": "Add someone to the scene. Ask me for a quote.", "fr": "Ajoutez quelqu'un à la scène. Demandez-moi un devis." },
+    "example": "charlyGortash.webp"
+  }
 ]

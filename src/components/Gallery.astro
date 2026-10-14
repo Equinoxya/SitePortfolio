@@ -2,6 +2,13 @@
 import { Picture, getImage } from "astro:assets";
 import { img } from "../lib/images";
 import works from "../data/portfolio.json";
+import { tr, useTranslations, type Lang } from "../i18n/ui";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 
 const sorted = [...works].sort((a, b) => b.index - a.index);
 const categories = [...new Set(sorted.map((w) => w.category))];
@@ -10,6 +17,8 @@ const categories = [...new Set(sorted.map((w) => w.category))];
 const items = await Promise.all(
   sorted.map(async (w) => ({
     ...w,
+    title: tr(w.title, lang),
+    alt: tr(w.alt, lang),
     full: (await getImage({ src: img(w.image), width: 712, format: "webp", quality: 80 })).src,
   })),
 );
@@ -17,11 +26,11 @@ const items = await Promise.all(
 
 <section id="gallery" class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
   <div class="flex flex-wrap items-end justify-between gap-4">
-    <h2 class="section-title">Gallery</h2>
+    <h2 class="section-title">{t("gallery.title")}</h2>
     {
       categories.length > 1 && (
-        <div class="flex flex-wrap gap-1" role="group" aria-label="Filter by category">
-          <button type="button" class="chip" data-filter="all" aria-pressed="true">All</button>
+        <div class="flex flex-wrap gap-1" role="group" aria-label={t("gallery.filter")}>
+          <button type="button" class="chip" data-filter="all" aria-pressed="true">{t("gallery.all")}</button>
           {categories.map((c) => (
             <button type="button" class="chip" data-filter={c} aria-pressed="false">{c}</button>
           ))}
@@ -64,7 +73,7 @@ const items = await Promise.all(
       <figcaption class="hand mt-2 text-center text-3xl text-bic"></figcaption>
     </figure>
     <form method="dialog">
-      <button class="btn absolute -top-5 -right-3 px-4 py-2 text-sm">Close</button>
+      <button class="btn absolute -top-5 -right-3 px-4 py-2 text-sm">{t("gallery.close")}</button>
     </form>
   </dialog>
 </section>

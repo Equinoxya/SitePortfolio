@@ -1,6 +1,13 @@
 ---
 import SocialIcon from "./SocialIcon.astro";
 import me from "../data/presentation.json";
+import { useTranslations, type Lang } from "../i18n/ui";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 
 const socials = [
   { name: "x", label: "X", href: me.socials.x },
@@ -12,13 +19,15 @@ const socials = [
 
 <section id="contact" class="px-4 py-20 sm:px-6">
   <div class="pinned tape-blue mx-auto max-w-3xl -rotate-1 px-6 py-14 text-center sm:px-12">
-    <h2 class="section-title">Want a drawing?</h2>
-    <p class="mx-auto mt-4 max-w-md text-lg">Write to me with your idea, your character and your budget.</p>
+    <h2 class="section-title">{t("contact.title")}</h2>
+    <p class="mx-auto mt-4 max-w-md text-lg">{t("contact.text")}</p>
 
     <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
       <a href={`mailto:${me.email}`} class="btn">{me.email}</a>
-      <button type="button" id="copy-email" data-email={me.email} class="btn-ghost cursor-pointer text-bic hover:text-crayon">
-        Copy email
+      <button type="button" id="copy-email" data-email={me.email}
+        data-copied={t("contact.copied")}
+        data-fail={t("contact.copyFail")} class="btn-ghost cursor-pointer text-bic hover:text-crayon">
+        {t("contact.copy")}
       </button>
     </div>
     <p id="copy-status" class="hand mt-2 h-8 text-2xl text-crayon" role="status" aria-live="polite"></p>
@@ -44,9 +53,9 @@ const socials = [
   btn.addEventListener("click", async () => {
     try {
       await navigator.clipboard.writeText(btn.dataset.email!);
-      status.textContent = "Email copied!";
+      status.textContent = btn.dataset.copied!;
     } catch {
-      status.textContent = "Couldn't copy. Use the email link instead.";
+      status.textContent = btn.dataset.fail!;
     }
     setTimeout(() => (status.textContent = ""), 2500);
   });
