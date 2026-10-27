@@ -19,7 +19,7 @@ const t = useTranslations(lang);
 <Base lang={lang}>
   {
     !settings.commissionsOpen && (
-      <p role="status" class="hand m-0 bg-crayon px-4 py-1.5 text-center text-2xl leading-tight font-bold text-white">
+      <p role="status" class="label m-0 bg-ink px-4 py-3 text-center text-white">
         {t("banner.closed")}
       </p>
     )
@@ -32,9 +32,11 @@ const t = useTranslations(lang);
     <Pricing lang={lang} />
     <Contact lang={lang} />
   </main>
-  <footer class="hand flex flex-col items-center gap-1 px-4 pb-10 text-center text-xl text-bic">
-    <span class="text-2xl">{t("footer.made")}</span>
-    <span class="text-ink/70">© {new Date().getFullYear()} Equipouet. {t("footer.rights")}</span>
+  <footer class="mx-auto max-w-6xl px-4 pb-12 sm:px-8">
+    <div class="label flex flex-wrap items-center justify-between gap-x-8 gap-y-2 border-t border-line pt-6 text-muted">
+      <span>© {new Date().getFullYear()} Equipouet. {t("footer.rights")}</span>
+      <span>{t("footer.made")}</span>
+    </div>
   </footer>
 </Base>
 

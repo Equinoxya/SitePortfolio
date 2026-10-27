@@ -1,8 +1,6 @@
 ---
-import { Picture } from "astro:assets";
 import SocialIcon from "./SocialIcon.astro";
 import SectionTitle from "./SectionTitle.astro";
-import { img } from "../lib/images";
 import me from "../data/presentation.json";
 import { useTranslations, type Lang } from "../i18n/ui";
 
@@ -20,45 +18,49 @@ const socials = [
 ] as const;
 ---
 
-<section id="contact" class="px-4 py-20 sm:px-6">
-  <div class="pinned tape-blue relative mx-auto max-w-3xl -rotate-1 px-6 pt-16 pb-14 text-center sm:px-12 sm:pt-14" data-reveal>
-    <div class="stamp absolute top-4 right-4 w-16 rotate-6 sm:-top-6 sm:-right-6 sm:w-24">
-      <Picture
-        src={img("pp.webp")}
-        alt={t("contact.stamp")}
-        formats={["avif", "webp"]}
-        fallbackFormat="webp"
-        quality={70}
-        widths={[96, 192]}
-        sizes="96px"
-        class="aspect-[4/5] h-auto w-full object-cover"
-      />
-    </div>
-    <SectionTitle class="items-center">{t("contact.title")}</SectionTitle>
-    <p class="mx-auto mt-4 max-w-md text-lg">{t("contact.text")}</p>
+<section id="contact" class="mx-auto max-w-6xl px-4 py-20 sm:px-8">
+  <SectionTitle>{t("contact.title")}</SectionTitle>
 
-    <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
-      <a href={`mailto:${me.email}`} class="btn">{me.email}</a>
-      <button type="button" id="copy-email" data-email={me.email}
-        data-copied={t("contact.copied")}
-        data-fail={t("contact.copyFail")} class="btn-ghost cursor-pointer text-bic hover:text-crayon">
-        {t("contact.copy")}
-      </button>
-    </div>
-    <p id="copy-status" class="hand mt-2 h-8 text-2xl text-crayon" role="status" aria-live="polite"></p>
+  <div class="mt-12 grid gap-12 md:grid-cols-2 md:gap-16">
+    <div data-reveal>
+      <p class="max-w-md text-lg leading-relaxed text-muted">{t("contact.text")}</p>
 
-    <ul class="mt-6 flex flex-wrap justify-center gap-6">
-      {
-        socials.map((s) => (
-          <li>
-            <a href={s.href} target="_blank" rel="noopener" class="flex items-center gap-2 font-semibold text-ink no-underline hover:text-crayon">
-              <SocialIcon name={s.name} class="size-5" />
-              {s.label}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
+      <div class="mt-8 flex flex-wrap items-center gap-6">
+        <a href={`mailto:${me.email}`} class="btn">{me.email}</a>
+        <button
+          type="button"
+          id="copy-email"
+          data-email={me.email}
+          data-copied={t("contact.copied")}
+          data-fail={t("contact.copyFail")}
+          class="btn-ghost cursor-pointer"
+        >
+          {t("contact.copy")}
+        </button>
+      </div>
+      <p id="copy-status" class="label mt-2 h-6 text-accent" role="status" aria-live="polite"></p>
+    </div>
+
+    <div data-reveal style="--d:120ms">
+      <p class="label text-muted">{t("contact.elsewhere")}</p>
+      <ul class="mt-5 border-t border-line">
+        {
+          socials.map((s) => (
+            <li class="border-b border-line">
+              <a
+                href={s.href}
+                target="_blank"
+                rel="noopener"
+                class="flex items-center gap-3 py-4 font-medium text-ink no-underline transition-colors hover:text-accent"
+              >
+                <SocialIcon name={s.name} class="size-4" />
+                {s.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </div>
 </section>
 

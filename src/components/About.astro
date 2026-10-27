@@ -12,24 +12,24 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 ---
 
-<section id="about" class="mx-auto grid max-w-6xl items-center gap-14 px-4 py-20 sm:px-6 md:grid-cols-[minmax(0,300px)_1fr]">
-  <figure class="pinned tape-blue m-0 mx-auto w-3/4 max-w-[300px] -rotate-3 md:w-full" data-reveal>
-    <Picture
-      src={img(me.photo)}
-      alt={tr(me.photoAlt, lang)}
-      formats={["avif", "webp"]}
-      fallbackFormat="webp"
-      quality={70}
-      widths={[240, 300, 450, 600]}
-      sizes="(min-width: 768px) 300px, 75vw"
-      class="aspect-[3/4] h-auto w-full object-cover"
-    />
-    <figcaption class="hand mt-2 text-center text-2xl text-bic">{t("about.caption")}</figcaption>
-  </figure>
+<section id="about" class="mx-auto max-w-6xl px-4 py-20 sm:px-8">
+  <SectionTitle>{t("about.title")}</SectionTitle>
 
-  <div>
-    <SectionTitle>{t("about.title")}</SectionTitle>
-    <div data-reveal style="--d:120ms" class="mt-6 max-w-[62ch] space-y-4 text-lg leading-relaxed">
+  <div class="mt-12 grid gap-12 md:grid-cols-[minmax(0,280px)_1fr] md:gap-16">
+    <figure class="m-0 max-w-[280px]" data-reveal>
+      <Picture
+        src={img(me.photo)}
+        alt={tr(me.photoAlt, lang)}
+        formats={["avif", "webp"]}
+        fallbackFormat="webp"
+        quality={72}
+        widths={[280, 420, 560]}
+        sizes="(min-width: 768px) 280px, 100vw"
+        class="aspect-[3/4] h-auto w-full object-cover"
+      />
+    </figure>
+
+    <div data-reveal style="--d:120ms" class="max-w-[62ch] space-y-5 text-lg leading-relaxed text-muted">
       {me.description[lang].map((p) => <p>{p}</p>)}
     </div>
   </div>

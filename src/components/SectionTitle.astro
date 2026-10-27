@@ -1,13 +1,11 @@
 ---
-import Scribble from "./Scribble.astro";
-
 interface Props {
   class?: string;
 }
 const { class: className = "" } = Astro.props;
 ---
 
-<div class:list={["inline-flex flex-col gap-1", className]} data-reveal>
+<div class:list={["section-head", className]} data-reveal>
   <h2 class="section-title"><slot /></h2>
-  <Scribble class="text-crayon" />
+  <slot name="aside" />
 </div>

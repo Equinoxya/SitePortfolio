@@ -20,37 +20,35 @@ const items = await Promise.all(
     ...w,
     title: tr(w.title, lang),
     alt: tr(w.alt, lang),
-    full: (await getImage({ src: img(w.image), width: 712, format: "webp", quality: 80 })).src,
+    full: (await getImage({ src: img(w.image), width: 900, format: "webp", quality: 82 })).src,
   })),
 );
 ---
 
-<section id="gallery" class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-  <div class="flex flex-wrap items-end justify-between gap-4">
-    <SectionTitle>{t("gallery.title")}</SectionTitle>
+<section id="gallery" class="mx-auto max-w-6xl px-4 py-20 sm:px-8">
+  <SectionTitle>
+    {t("gallery.title")}
     {
       categories.length > 1 && (
-        <div class="flex flex-wrap gap-1" role="group" aria-label={t("gallery.filter")}>
-          <button type="button" class="chip" data-filter="all" aria-pressed="true">{t("gallery.all")}</button>
+        <div slot="aside" class="flex flex-wrap gap-x-5 gap-y-1" role="group" aria-label={t("gallery.filter")}>
+          <button type="button" class="chip" data-filter="all" aria-pressed="true">
+            {t("gallery.all")}
+          </button>
           {categories.map((c) => (
-            <button type="button" class="chip" data-filter={c} aria-pressed="false">{c}</button>
+            <button type="button" class="chip" data-filter={c} aria-pressed="false">
+              {c}
+            </button>
           ))}
         </div>
       )
     }
-  </div>
+  </SectionTitle>
 
-  <ul class="mt-12 grid grid-cols-2 gap-x-5 gap-y-10 md:grid-cols-3 lg:grid-cols-4">
+  <ul class="mt-12 grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 md:gap-x-6 lg:grid-cols-4">
     {
       items.map((w, i) => (
-        <li class="work" data-category={w.category} data-reveal style={`--d:${(i % 4) * 70}ms`}>
-          <button
-            type="button"
-            class:list={["pinned w-full cursor-zoom-in text-left", i % 2 && "tape-blue"]}
-            data-full={w.full}
-            data-alt={w.alt}
-            data-title={w.title}
-          >
+        <li class="work" data-category={w.category} data-reveal style={`--d:${(i % 4) * 80}ms`}>
+          <button type="button" class="group block w-full cursor-zoom-in text-left" data-full={w.full} data-alt={w.alt} data-title={w.title}>
             <Picture
               src={img(w.image)}
               alt={w.alt}
@@ -58,10 +56,10 @@ const items = await Promise.all(
               fallbackFormat="webp"
               quality={70}
               widths={[240, 360, 540]}
-              sizes="(min-width: 1024px) 260px, (min-width: 768px) 30vw, 45vw"
-              class="aspect-[3/4] h-auto w-full object-cover"
+              sizes="(min-width: 1024px) 270px, (min-width: 768px) 30vw, 45vw"
+              class="aspect-[3/4] h-auto w-full object-cover transition-opacity duration-300 group-hover:opacity-85"
             />
-            <span class="hand mt-2 block text-center text-xl leading-tight text-bic sm:text-2xl">{w.title}</span>
+            <span class="label mt-3 block text-muted transition-colors group-hover:text-ink">{w.title}</span>
           </button>
         </li>
       ))
@@ -70,27 +68,36 @@ const items = await Promise.all(
 
   <dialog
     id="lightbox"
-    class="m-auto max-h-[94vh] w-[min(92vw,560px)] overflow-visible bg-transparent p-0 backdrop:bg-ink/80 backdrop:backdrop-blur-[2px]"
+    class="m-auto max-h-[94vh] w-[min(94vw,720px)] bg-transparent p-0 backdrop:bg-ink/95"
     aria-label={t("gallery.title")}
   >
-    <figure class="pinned m-0">
-      <img src="" alt="" width="712" height="950" class="h-auto max-h-[72vh] w-full object-contain" />
-      <figcaption class="mt-2 flex items-baseline justify-between gap-3">
-        <span class="hand text-3xl leading-tight text-bic" data-caption></span>
-        <span class="hand shrink-0 text-2xl text-crayon" data-counter></span>
+   <div class="mx-auto w-fit">
+    <figure class="m-0">
+      <img src="" alt="" width="900" height="1200" class="mx-auto h-auto max-h-[74vh] w-auto max-w-full bg-transparent object-contain" />
+      <figcaption class="label mt-4 flex items-baseline justify-between gap-4 text-white/70">
+        <span data-caption></span>
+        <span class="shrink-0" data-counter></span>
       </figcaption>
     </figure>
 
-    <button type="button" class="nav-btn left-0 -translate-x-1/2 sm:-translate-x-[130%]" data-step="-1" aria-label={t("gallery.prev")}>
-      <svg viewBox="0 0 24 24" class="size-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg>
-    </button>
-    <button type="button" class="nav-btn right-0 translate-x-1/2 sm:translate-x-[130%]" data-step="1" aria-label={t("gallery.next")}>
-      <svg viewBox="0 0 24 24" class="size-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg>
-    </button>
-
-    <form method="dialog">
-      <button class="btn absolute -top-5 -right-3 px-4 py-2 text-sm">{t("gallery.close")}</button>
-    </form>
+    <div class="mt-5 flex items-center justify-between">
+      <div class="flex gap-2">
+        <button type="button" class="nav-btn" data-step="-1" aria-label={t("gallery.prev")}>
+          <svg viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+            ><path d="M15 5l-7 7 7 7"></path></svg
+          >
+        </button>
+        <button type="button" class="nav-btn" data-step="1" aria-label={t("gallery.next")}>
+          <svg viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+            ><path d="M9 5l7 7-7 7"></path></svg
+          >
+        </button>
+      </div>
+      <form method="dialog">
+        <button class="label cursor-pointer px-1 py-2 text-white/70 transition-colors hover:text-white">{t("gallery.close")}</button>
+      </form>
+    </div>
+   </div>
   </dialog>
 </section>
 
@@ -98,43 +105,22 @@ const items = await Promise.all(
   @reference "../styles/global.css";
 
   .chip {
-    @apply min-h-11 cursor-pointer rounded-md px-3 py-1.5 font-semibold text-ink transition-colors hover:text-crayon;
+    @apply label cursor-pointer border-b border-transparent pb-0.5 text-muted transition-colors hover:text-ink;
   }
   .chip[aria-pressed="true"] {
-    @apply text-bic underline decoration-crayon decoration-wavy decoration-2 underline-offset-[6px];
+    @apply border-ink text-ink;
   }
 
   .nav-btn {
-    @apply absolute top-1/2 grid size-12 -translate-y-1/2 cursor-pointer place-items-center rounded-full bg-white text-bic shadow-[0_2px_6px_rgb(35_40_58/0.3)] transition-colors hover:bg-bic hover:text-white;
+    @apply grid size-11 cursor-pointer place-items-center border border-white/25 text-white/70 transition-colors hover:border-white hover:text-white;
   }
 
-  /* Légères rotations, comme des dessins scotchés à la main */
-  .work .pinned {
-    transition:
-      rotate 0.2s ease,
-      scale 0.2s ease,
-      box-shadow 0.2s ease;
-  }
-  .work:nth-child(4n + 1) .pinned { rotate: -2deg; }
-  .work:nth-child(4n + 2) .pinned { rotate: 1.5deg; }
-  .work:nth-child(4n + 3) .pinned { rotate: -1deg; }
-  .work:nth-child(4n + 4) .pinned { rotate: 2.5deg; }
-  .work .pinned:hover,
-  .work .pinned:focus-visible {
-    rotate: 0deg;
-    scale: 1.04;
-    box-shadow: 0 10px 22px -8px rgb(35 40 58 / 0.35);
-  }
-
-  /* La visionneuse s'ouvre en se posant sur la table */
   #lightbox[open] figure {
-    animation: drop-in 0.3s cubic-bezier(0.2, 1.2, 0.4, 1);
+    animation: fade-in 0.3s ease-out;
   }
-  @keyframes drop-in {
+  @keyframes fade-in {
     from {
       opacity: 0;
-      scale: 0.94;
-      rotate: -2deg;
     }
   }
 </style>
@@ -176,9 +162,7 @@ const items = await Promise.all(
       dialog.showModal();
     }),
   );
-  dialog.querySelectorAll<HTMLButtonElement>("[data-step]").forEach((b) =>
-    b.addEventListener("click", () => show(current + Number(b.dataset.step))),
-  );
+  dialog.querySelectorAll<HTMLButtonElement>("[data-step]").forEach((b) => b.addEventListener("click", () => show(current + Number(b.dataset.step))));
   dialog.addEventListener("keydown", (e) => {
     if (e.key === "ArrowLeft") show(current - 1);
     if (e.key === "ArrowRight") show(current + 1);
