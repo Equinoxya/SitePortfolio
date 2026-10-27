@@ -10,44 +10,42 @@ interface Props {
 }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-
-const tilt = ["-rotate-2", "rotate-2", "-rotate-1"];
+const sep = lang === "fr" ? " : " : ": "; // espace avant les deux-points en français
 ---
 
-<section id="pricing" class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-  <SectionTitle>{t("pricing.title")}</SectionTitle>
-  <p class="mt-4 max-w-xl text-lg">{t("pricing.intro")}</p>
+<section id="pricing" class="mx-auto max-w-6xl px-4 py-20 sm:px-8">
+  <SectionTitle>
+    {t("pricing.title")}
+    <p slot="aside" class="max-w-md text-base leading-relaxed text-muted">{t("pricing.intro")}</p>
+  </SectionTitle>
 
-  <ul class="mt-14 grid gap-14 sm:grid-cols-3 sm:gap-8">
+  <ul class="mt-12 grid gap-10 sm:grid-cols-3 sm:gap-6">
     {
       pricing.map((plan, i) => (
-        <li class="flex flex-col items-center text-center" data-reveal style={`--d:${i * 120}ms`}>
-          <figure class:list={["pinned m-0 w-3/5 sm:w-4/5", tilt[i % tilt.length], i % 2 && "tape-blue"]}>
+        <li data-reveal style={`--d:${i * 110}ms`}>
+          <figure class="m-0 max-w-[260px] sm:max-w-none">
             <Picture
               src={img(plan.example)}
-              alt={`${t("pricing.example")}${lang === "fr" ? " : " : ": "}${tr(plan.name, lang).toLowerCase()}`}
+              alt={`${t("pricing.example")}${sep}${tr(plan.name, lang).toLowerCase()}`}
               formats={["avif", "webp"]}
               fallbackFormat="webp"
               quality={70}
-              widths={[200, 300, 400]}
-              sizes="(min-width: 640px) 25vw, 60vw"
+              widths={[240, 360, 480]}
+              sizes="(min-width: 640px) 30vw, 100vw"
               class="aspect-[3/4] h-auto w-full object-cover"
             />
           </figure>
-          <h3 class="mt-6 text-xl font-semibold">{tr(plan.name, lang)}</h3>
-          <p class="hand relative -rotate-2 px-5 py-1 text-5xl leading-tight font-bold text-crayon">
-            {tr(plan.price, lang)}
-            <svg class="draw absolute inset-0 h-full w-full text-bic" viewBox="0 0 120 60" preserveAspectRatio="none" fill="none" aria-hidden="true">
-              <path d="M62 6C30 3 6 13 5 30s26 26 58 25 54-10 52-27S88 3 55 5c-6 0-11 2-14 3" pathLength="1" stroke="currentColor" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke"></path>
-            </svg>
-          </p>
-          <p class="mt-1 max-w-[26ch]">{tr(plan.detail, lang)}</p>
+          <div class="mt-5 flex items-baseline justify-between gap-4 border-t border-line pt-4">
+            <h3 class="text-lg font-medium tracking-tight">{tr(plan.name, lang)}</h3>
+            <p class="shrink-0 text-lg font-medium tracking-tight">{tr(plan.price, lang)}</p>
+          </div>
+          <p class="mt-2 max-w-[34ch] leading-relaxed text-muted">{tr(plan.detail, lang)}</p>
         </li>
       ))
     }
   </ul>
 
-  <div class="mt-14 flex justify-center">
+  <div class="mt-14">
     <a href="#contact" class="btn">{t("pricing.cta")}</a>
   </div>
 </section>

@@ -17,26 +17,37 @@ const links = [
 ];
 ---
 
-<header id="site-header" class="relative top-0 z-40 md:sticky border-b-2 border-dashed border-transparent bg-paper/90 backdrop-blur-sm transition-[border-color,box-shadow] duration-300 data-[scrolled]:border-grid data-[scrolled]:shadow-[0_6px_14px_-12px_rgb(35_40_58/0.5)]">
-<div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 py-4 sm:px-6">
-  <a href="#top" class="hand text-4xl font-bold text-bic no-underline">Equipouet</a>
-  <div class="flex items-center gap-5 sm:gap-8">
-    <nav aria-label={t("nav.label")}>
-      <ul class="flex flex-wrap gap-x-5 gap-y-1 text-[15px] font-semibold sm:gap-8">
-        {links.map((l) => <li><a href={l.href} class="text-ink no-underline hover:text-crayon">{l.label}</a></li>)}
-      </ul>
-    </nav>
-    <a
-      href={getRelativeLocaleUrl(other)}
-      hreflang={other}
-      lang={other}
-      aria-label={t("nav.switch")}
-      class="hand rounded-md border-2 border-bic px-2.5 text-2xl leading-8 font-bold text-bic no-underline hover:border-crayon"
-    >
-      {other.toUpperCase()}
-    </a>
+<header
+  id="site-header"
+  class="relative top-0 z-40 border-b border-transparent bg-paper/85 backdrop-blur-sm transition-colors duration-300 data-[scrolled]:border-line md:sticky"
+>
+  <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-8 gap-y-3 px-4 py-5 sm:px-8">
+    <a href="#top" class="text-lg font-medium tracking-[0.12em] uppercase no-underline">Equipouet</a>
+    <div class="flex items-center gap-6 sm:gap-8">
+      <nav aria-label={t("nav.label")}>
+        <ul class="label flex flex-wrap gap-x-5 gap-y-1 text-muted sm:gap-7">
+          {
+            links.map((l) => (
+              <li>
+                <a href={l.href} class="text-muted no-underline transition-colors hover:text-ink">
+                  {l.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <a
+        href={getRelativeLocaleUrl(other)}
+        hreflang={other}
+        lang={other}
+        aria-label={t("nav.switch")}
+        class="label border border-line px-2.5 py-1.5 text-muted no-underline transition-colors hover:border-ink hover:text-ink"
+      >
+        {other.toUpperCase()}
+      </a>
+    </div>
   </div>
-</div>
 </header>
 
 <script>

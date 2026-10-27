@@ -12,65 +12,63 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 const sep = lang === "fr" ? " : " : ": "; // espace avant les deux-points en français
 
-// Les 4 dernières illustrations (index le plus haut) forment le collage
+// Les 4 dernières illustrations (index le plus haut) ouvrent la page
 const latest = [...works].sort((a, b) => b.index - a.index).slice(0, 4);
-
-// Position de chaque illustration scotchée (desktop)
-const spots = [
-  { box: "md:left-[2%] md:top-[4%] md:w-[46%] -rotate-3", tape: "" },
-  { box: "md:right-[0%] md:top-0 md:w-[42%] rotate-[4deg]", tape: "tape-blue" },
-  { box: "md:left-[0%] md:top-[56%] md:w-[38%] rotate-2", tape: "tape-blue" },
-  { box: "md:right-[6%] md:top-[52%] md:w-[40%] -rotate-[5deg]", tape: "" },
-];
 ---
 
-<section id="top" class="mx-auto grid max-w-6xl gap-14 px-4 pt-6 pb-24 sm:px-6 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:pt-14">
-  <div class="flex flex-col gap-5">
-    <h1 class="text-balance text-5xl leading-[1.02] font-semibold tracking-tight sm:text-[3.5rem]">{t("hero.title")}</h1>
-    <p class="max-w-md text-lg leading-relaxed">
+<section id="top" class="mx-auto max-w-6xl px-4 pt-10 pb-20 sm:px-8 md:pt-20">
+  <p class="label text-muted" data-reveal>{t("hero.role")}</p>
+
+  <h1
+    class="mt-6 max-w-3xl text-balance text-4xl leading-[1.08] font-medium tracking-tight sm:text-5xl lg:text-[3.75rem]"
+    data-reveal
+    style="--d:80ms"
+  >
+    {t("hero.title")}
+  </h1>
+
+  <div class="mt-8 flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
+    <p class="max-w-md text-lg leading-relaxed text-muted" data-reveal style="--d:160ms">
       {t("hero.text")}
     </p>
-    <div class="flex flex-wrap items-center gap-3">
+
+    <div class="flex flex-wrap items-center gap-6" data-reveal style="--d:240ms">
       <a href="#pricing" class="btn">{t("hero.cta")}</a>
       <a href="#gallery" class="btn-ghost">{t("hero.gallery")}</a>
     </div>
-    <ul class="hand mt-6 -rotate-2 text-3xl leading-tight text-crayon" aria-label={t("hero.prices")} data-reveal style="--d:700ms">
-      {pricing.map((p) => <li>{tr(p.name, lang)}{sep}{tr(p.price, lang)}</li>)}
-    </ul>
-
-    <!-- Annotation à la main, sur grand écran -->
-    <div class="mt-8 hidden items-center gap-2 self-end md:flex" aria-hidden="true" data-reveal style="--d:950ms">
-      <span class="hand -rotate-3 text-3xl whitespace-nowrap text-bic">{t("hero.note")}</span>
-      <svg class="draw h-12 w-20 text-bic" viewBox="0 0 80 48" fill="none">
-        <path d="M4 40C24 44 52 38 70 14" pathLength="1" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></path>
-        <path d="M58 15l12-2 1 12" pathLength="1" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-      </svg>
-    </div>
   </div>
 
-  <div class="relative grid grid-cols-2 gap-x-5 gap-y-8 md:block md:min-h-[640px]" aria-label={t("hero.latest")}>
+  <ul class="label mt-10 flex flex-wrap gap-x-6 gap-y-2 border-t border-line pt-5 text-muted" aria-label={t("hero.prices")} data-reveal style="--d:320ms">
     {
-      latest.map((w, i) => (
-        <figure
-          class:list={["pinned stick m-0 transition-[rotate,scale] duration-200 hover:z-20 hover:scale-[1.03] hover:rotate-0 md:absolute", spots[i].box, spots[i].tape]}
-          style={`--d:${150 + i * 140}ms`}
-        >
-          <Picture
-            src={img(w.image)}
-            alt={tr(w.alt, lang)}
-            formats={["avif", "webp"]}
-            fallbackFormat="webp"
-            quality={70}
-            widths={[240, 360, 480]}
-            sizes="(min-width: 768px) 280px, 45vw"
-            loading={i < 2 ? "eager" : "lazy"}
-            fetchpriority={i === 0 ? "high" : "auto"}
-            class="aspect-[3/4] h-auto w-full object-cover"
-          />
-          <figcaption class="hand mt-2 text-center text-xl leading-tight text-bic sm:text-2xl">{tr(w.title, lang)}</figcaption>
-        </figure>
+      pricing.map((p) => (
+        <li>
+          {tr(p.name, lang)}
+          {sep}
+          <span class="text-ink">{tr(p.price, lang)}</span>
+        </li>
       ))
     }
+  </ul>
 
-  </div>
+  <ul class="mt-14 grid grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-4 md:gap-x-6" aria-label={t("hero.latest")}>
+    {
+      latest.map((w, i) => (
+        <li data-reveal style={`--d:${400 + i * 90}ms`}>
+          <figure class="m-0">
+            <Picture
+              src={img(w.image)}
+              alt={tr(w.alt, lang)}
+              formats={["avif", "webp"]}
+              fallbackFormat="webp"
+              quality={72}
+              widths={[240, 360, 540, 720]}
+              sizes="(min-width: 768px) 25vw, 45vw"
+              class="aspect-[3/4] h-auto w-full object-cover"
+            />
+            <figcaption class="label mt-3 text-muted">{tr(w.title, lang)}</figcaption>
+          </figure>
+        </li>
+      ))
+    }
+  </ul>
 </section>

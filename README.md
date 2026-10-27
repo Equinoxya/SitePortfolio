@@ -1,6 +1,6 @@
 # SitePortfolio
 
-Portfolio d'**Equipouet**, illustratrice et développeuse web. Le design reprend l'idée d'un carnet de croquis : papier quadrillé, illustrations scotchées, notes écrites à la main.
+Portfolio d'**Equipouet**, illustratrice et développeuse web. Le design est une galerie minimaliste : fond crème, typographie sobre, grille d'images régulière — les illustrations portent tout le visuel.
 
 ## 🛠️ Stack technique
 
@@ -9,7 +9,7 @@ Portfolio d'**Equipouet**, illustratrice et développeuse web. Le design reprend
 | Framework      | [Astro](https://astro.build)                    |
 | Style          | [Tailwind CSS](https://tailwindcss.com) v4      |
 | Images         | `astro:assets` (AVIF + WebP, tailles responsive) |
-| Polices        | Caveat + Work Sans (auto-hébergées via Fontsource) |
+| Polices        | Work Sans (auto-hébergée via Fontsource)        |
 | Icônes         | [Simple Icons](https://simpleicons.org) en SVG intégré |
 | Déploiement    | GitHub Pages via GitHub Actions                 |
 
@@ -38,23 +38,23 @@ src/
 ├── lib/images.ts    # Retrouve une image à partir de son nom de fichier
 ├── i18n/ui.ts       # Textes de l'interface en anglais et en français
 ├── pages/           # index.astro (anglais), fr/index.astro (français)
-└── styles/          # global.css (couleurs, polices, style « scotché »)
+└── styles/          # global.css (couleurs, polices, styles partagés)
 public/              # Icône d'onglet (favicon.svg, .ico) et icône iPhone
 _ancien-site/        # Ancienne version HTML/CSS, gardée pour référence
 ```
 
 ## 🎨 Design
 
-| Rôle              | Valeur                        |
-| ----------------- | ----------------------------- |
-| Papier            | `#f3f6fa` + quadrillage `#dfe6f0` |
-| Texte             | `#23283a`                     |
-| Stylo bleu (liens, titres) | `#2b4cc4`            |
-| Crayon rouge (prix, notes) | `#c93a2f`            |
-| Titres, légendes  | Caveat                        |
-| Texte courant     | Work Sans                     |
+| Rôle                      | Valeur    |
+| ------------------------- | --------- |
+| Fond                      | `#fbfaf8` |
+| Texte                     | `#16161a` |
+| Texte secondaire          | `#6c6c68` |
+| Filets, séparateurs       | `#e5e2db` |
+| Accent (survol, statut)   | `#9c4a33` |
+| Police unique             | Work Sans |
 
-Les couleurs et polices sont définies une seule fois dans `src/styles/global.css` (bloc `@theme`). La classe `.pinned` donne l'effet « illustration scotchée » ; ajouter `.tape-blue` pour un scotch bleu.
+Les couleurs et la police sont définies une seule fois dans `src/styles/global.css` (bloc `@theme`). L'utilitaire `.label` donne les petites capitales espacées des légendes et des filtres ; `.section-head` dessine le filet au-dessus de chaque titre de section.
 
 ## ✏️ Modifier le contenu
 
@@ -67,7 +67,7 @@ Les couleurs et polices sont définies une seule fois dans `src/styles/global.cs
 { "index": 12, "title": "Titre", "image": "monImage.webp", "alt": "Description de l'image", "category": "Illustration" }
 ```
 
-`index` doit être le plus grand de la liste. Les 4 index les plus hauts apparaissent dans le collage du haut de page. Une nouvelle `category` crée automatiquement un filtre dans la galerie.
+`index` doit être le plus grand de la liste. Les 4 index les plus hauts apparaissent en haut de la page d'accueil. Une nouvelle `category` crée automatiquement un filtre dans la galerie.
 
 ## 🌍 Traduction (anglais / français)
 
